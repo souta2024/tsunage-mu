@@ -1,0 +1,2 @@
+class PostHistory < ApplicationRecord
+end
