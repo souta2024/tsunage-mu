@@ -1,0 +1,2 @@
+class CommentHistory < ApplicationRecord
+end
