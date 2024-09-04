@@ -12,6 +12,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %> <!-- ログイン状況に応じたヘッダーを表示 -->
+      <%= render "header_user" %>
+    <% elsif admin_signed_in? %>
+      <%= render "header_admin" %>
+    <% else %>
+      <%= render "header" %>
+    <% end %>
+    <main>
+      <%= yield %>
+    </main>
+    <%= render "footer" %>
   </body>
 </html>
