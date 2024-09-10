@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TsunageMu</title>
+    <title>つなゲ～ム</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,11 +17,11 @@
     <% elsif admin_signed_in? %>
       <%= render "header_admin" %>
     <% else %>
-      <%= render "header" %>
+      <%= render "layouts/header" %>
     <% end %>
     <main>
       <%= yield %>
     </main>
-    <%= render "footer" %>
+    <%= render "layouts/footer" %>
   </body>
 </html>

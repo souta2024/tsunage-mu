@@ -11,7 +11,9 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
+// cssファイルの適用
 import "../stylesheets/application";
+import "../stylesheets/overrides/header.css"
 
 Rails.start()
 Turbolinks.start()

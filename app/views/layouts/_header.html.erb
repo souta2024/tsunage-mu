@@ -1,1 +1,16 @@
-<header></header>
+<header>
+  <div class="navbar navbar-light">
+    <%= link_to "つなゲ～ム", root_path, class: "navbar-brand" %>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to "最新投稿", posts_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+      </li>
+    </ul>
+  </div>
+</header>
