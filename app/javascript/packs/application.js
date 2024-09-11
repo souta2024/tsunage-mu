@@ -13,7 +13,10 @@ import "popper.js";
 import "bootstrap";
 // cssファイルの適用
 import "../stylesheets/application";
-import "../stylesheets/overrides/header.css"
+import "../stylesheets/overrides/nav.css"
+import "../stylesheets/views/header.css"
+// jsファイルの適用
+import "../script.js"
 
 Rails.start()
 Turbolinks.start()
