@@ -13,9 +13,9 @@
 
   <body>
     <% if user_signed_in? %> <!-- ログイン状況に応じたヘッダーを表示 -->
-      <%= render "header_user" %>
+      <%= render "layouts/header_user" %>
     <% elsif admin_signed_in? %>
-      <%= render "header_admin" %>
+      <%= render "layouts/header_admin" %>
     <% else %>
       <%= render "layouts/header" %>
     <% end %>

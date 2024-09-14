@@ -1,2 +1,2 @@
-let title = "javascriptが使えました";
-alert(title);
+// let title = "javascriptが使えました";
+// alert(title);

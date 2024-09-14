@@ -1,13 +1,14 @@
+/* ヘッダーを上部に固定 */
 header {
   position: sticky;
   top: 0;
   right: 0;
 }
-
+/* ヘッダーのナビゲーション */
 .header-items {
-  height: 50px;
+  height: 60px;
   padding: 0 50px;
-  background-color: pink;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,20 +17,30 @@ header {
   right: 0;
   z-index: 10;
 }
+.header-logo {
+  color: #d53df4;
+  font-weight: bold;
+}
+.header-item {
+  color: #d1d1d1;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
-.header-logo:hover,.header-item:hover {
+.header-logo:hover {
+  color: #d53df4;
+}
+.header-item:hover {
+  color: black;
+}
+.header-logo:hover,
+.header-item:hover {
   text-decoration: none;
 }
 
 /* ハンバーガーアイコン */
 #hm-icon {
   height: 30px;
-}
-.menu-trigger,
-.menu-trigger span {
-  display: inline-block;
-  transition: all .4s;
-  box-sizing: border-box;
 }
 .menu-trigger {
   position: relative;
@@ -45,6 +56,13 @@ header {
   background-color: #000;
   border-radius: 4px;
 }
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+/* ハンバーガーアイコンの終了アニメーション*/
 .menu-trigger span:nth-child(1) {
   top: 0;
   -webkit-animation: btn-bar1 .75s forwards;
@@ -127,7 +145,7 @@ header {
     transform: translateY(0) rotate(0);
   }
 }
-/* ハンバーガーメニュー　アニメーション */
+/* ハンバーガーアイコンの開始アニメーション */
 .menu-trigger.active span:nth-child(1) {
   -webkit-animation: active-btn-bar1 .75s forwards;
   animation: active-btn-bar1 .75s forwards;
@@ -206,21 +224,7 @@ header {
     transform: translateY(-13px) rotate(-45deg);
   }
 }
-/*ホバーアニメーション*/
-/*.menu-trigger:hover span:nth-child(1) {*/
-/*  -webkit-transform: translateY(20px);*/
-/*  transform: translateY(20px);*/
-/*}*/
-/*.menu-trigger.active span:nth-child(2) {*/
-/*  opacity: 0;*/
-/*}*/
-/*.menu-trigger.active span:nth-child(3) {*/
-/*  -webkit-transform: translateY(-20px) rotate(45deg);*/
-/*  transform: translateY(-20px) rotate(45deg);*/
-/*  background-color: #fff;*/
-/*}*/
-
-/* spメニュー*/
+/* spメニュー */
 #sp-menu {
   position: absolute;
   top: -200px;
@@ -236,20 +240,19 @@ header {
 #sp-menu ul {
   margin-bottom: 0;
 }
-#sp-menu li {
+#sp-menu a {
   height: 50px;
   text-align: center;
   padding-top: 10px;
   border-bottom: solid;
   list-style: none;
-}
-#sp-menu a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
+  display: block;
 }
-
+/* spメニューの開始アニメーション */
 #sp-menu.menu-active {
-  top: 50px;
+  top: 60px;
   transition: all .75s ease;
 }
