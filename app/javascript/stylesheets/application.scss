@@ -1,1 +1,17 @@
 @use '~bootstrap/scss/bootstrap';
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main{
+  background-color: #F7F7F7;
+}
+.box {
+  width: 400px;
+  height: 400px;
+  background-color: gray;
+  margin: auto;
+}

@@ -1,0 +1,258 @@
+/* ヘッダーを上部に固定 */
+header {
+  position: sticky;
+  top: 0;
+  right: 0;
+}
+/* ヘッダーのナビゲーション */
+.header-items {
+  height: 60px;
+  padding: 0 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+.header-logo {
+  color: #d53df4;
+  font-weight: bold;
+}
+.header-item {
+  color: #d1d1d1;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header-logo:hover {
+  color: #d53df4;
+}
+.header-item:hover {
+  color: black;
+}
+.header-logo:hover,
+.header-item:hover {
+  text-decoration: none;
+}
+
+/* ハンバーガーアイコン */
+#hm-icon {
+  height: 30px;
+}
+.menu-trigger {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+/* ハンバーガーアイコンの終了アニメーション*/
+.menu-trigger span:nth-child(1) {
+  top: 0;
+  -webkit-animation: btn-bar1 .75s forwards;
+  animation: btn-bar1 .75s forwards;
+}
+@-webkit-keyframes btn-bar1 {
+  0% {
+    -webkit-transform: translateY(13px) rotate(45deg);
+  }
+  50% {
+    -webkit-transform: translateY(13px) rotate(0);
+  }
+  100% {
+    -webkit-transform: translateY(0) rotate(0);
+  }
+}
+@keyframes btn-bar1 {
+  0% {
+    transform: translateY(13px) rotate(45deg);
+  }
+  50% {
+    transform: translateY(13px) rotate(0);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.menu-trigger span:nth-child(2) {
+  top: 13px;
+  -webkit-animation: btn-bar2 .75s forwards;
+  animation: btn-bar2 .75s forwards;
+}
+@-webkit-keyframes btn-bar2 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes btn-bar2 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.menu-trigger span:nth-child(3) {
+  top: 26px;
+  -webkit-animation: btn-bar3 .75s forwards;
+  animation: btn-bar3 .75s forwards;
+}
+@-webkit-keyframes btn-bar3 {
+  0% {
+    -webkit-transform: translateY(13px) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: translateY(13px) rotate(0);
+  }
+  100% {
+    -webkit-transform: translateY(0) rotate(0);
+  }
+}
+@keyframes btn-bar3 {
+  0% {
+    transform: translateY(-13px) rotate(-45deg);
+  }
+  50% {
+    transform: translateY(-13px) rotate(0);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+/* ハンバーガーアイコンの開始アニメーション */
+.menu-trigger.active span:nth-child(1) {
+  -webkit-animation: active-btn-bar1 .75s forwards;
+  animation: active-btn-bar1 .75s forwards;
+}
+@-webkit-keyframes active-btn-bar1 {
+  0% {
+    -webkit-transform: translateY(0) rotate(0);
+  }
+  50% {
+    -webkit-transform: translateY(13px) rotate(0);
+  }
+  100% {
+    -webkit-transform: translateY(13px) rotate(45deg);
+  }
+}
+@keyframes active-btn-bar1 {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(13px) rotate(0);
+  }
+  100% {
+    transform: translateY(13px) rotate(45deg);
+  }
+}
+.menu-trigger.active span:nth-child(2) {
+  -webkit-animation: active-btn-bar2 .75s step-start forwards;
+  animation: active-btn-bar2 .75s step-start forwards;
+}
+@-webkit-keyframes active-btn-bar2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes active-btn-bar2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.menu-trigger.active span:nth-child(3) {
+  -webkit-animation: active-btn-bar3 .75s forwards;
+  animation: active-btn-bar3 .75s forwards;
+}
+@-webkit-keyframes active-btn-bar3 {
+  0% {
+    -webkit-transform: translateY(0) rotate(0);
+  }
+  50% {
+    -webkit-transform: translateY(13px) rotate(0);
+  }
+  100% {
+    -webkit-transform: translateY(13px) rotate(-45deg);
+  }
+}
+@keyframes active-btn-bar3 {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-13px) rotate(0);
+  }
+  100% {
+    transform: translateY(-13px) rotate(-45deg);
+  }
+}
+/* spメニュー */
+#sp-menu {
+  position: absolute;
+  top: -200px;
+  right: 0;
+  background: #000;
+  color: #fff;
+  width: 20%;
+  min-height: 100%;
+  min-width: 123px;
+  z-index: 9;
+  transition: all .75s ease;
+}
+#sp-menu ul {
+  margin-bottom: 0;
+}
+#sp-menu a {
+  height: 50px;
+  text-align: center;
+  padding-top: 10px;
+  border-bottom: solid;
+  list-style: none;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+/* spメニューの開始アニメーション */
+#sp-menu.menu-active {
+  top: 60px;
+  transition: all .75s ease;
+}

@@ -1,0 +1,24 @@
+<header>
+  <nav class="header-items">
+    <h3><%= link_to "つなゲ～ム", root_path, class: "header-logo" %></h3>
+    <%= link_to "最新投稿", posts_path, class: "header-item" %>
+    <%= link_to "ログイン", new_user_session_path, class: "header-item" %>
+    <%= link_to "新規登録", new_user_registration_path, class: "header-item" %>
+    <div id="hm-icon">
+      <a class="menu-trigger" herf="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+  </nav>
+  <nav id="sp-menu">
+    <ul>
+      <li><a href="#">MENU1</a></li>
+      <li><a href="#">MENU2</a></li>
+      <li><a href="#">MENU3</a></li>
+      <li><a href="#">MENU4</a></li>
+      <li><a href="#">MENU5</a></li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,32 @@
+<header>
+  <nav class="header-items">
+    <h2><%= link_to "つなゲ～ム", root_path, class: "header-logo" %></h2>
+    <%= link_to "最新投稿", posts_path, class: "header-item" %>
+    <%= link_to "タイムライン", posts_path, class: "header-item" %>
+    <%= link_to "検索", search_path, class: "header-item" %>
+    <p>ユーザー情報</p>
+    <div id="hm-icon">
+      <%= link_to "#", class: "menu-trigger" do %>
+        <span></span>
+        <span></span>
+        <span></span>
+      <% end %>
+    </div>
+  </nav>
+  <nav id="sp-menu">
+    <ul>
+      <%= link_to user_path(current_user.id) do %>
+        <li>マイページ</li>
+      <% end %>
+      <%= link_to direct_messages_path do %>
+        <li>ダイレクトメッセージ</li>
+      <% end %>
+      <%= link_to options_path do %>
+        <li>オプション</li>
+      <% end %>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <li>ログアウト</li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
