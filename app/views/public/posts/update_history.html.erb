@@ -1,2 +1,23 @@
-<h1>Public::Posts#update_history</h1>
-<p>Find me in app/views/public/posts/update_history.html.erb</p>
+<div class="container">
+    <div class="row">
+        <div class="col-4 offset-4">
+          <h3>更新履歴</h3>
+          <% @post_histories.each do |post_history| %>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <%= post_history.body %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <%= post_history.edit_datetime %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</div>
