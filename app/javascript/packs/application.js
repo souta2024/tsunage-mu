@@ -12,8 +12,8 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 // cssファイルの適用
-import "../stylesheets/application";
-import "../stylesheets/overrides/nav.css";
+import "../stylesheets/application.scss";
+import "../stylesheets/shared/main.css";
 import "../stylesheets/views/header.css";
 // jsファイルの適用
 import "../views/script.js";
