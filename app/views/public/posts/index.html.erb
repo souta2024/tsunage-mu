@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
+      <h3 class="main-h3">投稿フォーム</h3>
       <%= form_with model: @post do |f| %>
         <div class="row">
           <%= f.label "投稿内容" %>
@@ -17,6 +18,32 @@
         </div>
       <% end %>
     </div>
-    <div class="col-4"></div>
+    <div class="col-4">
+      <h3 class="main-h3">投稿一覧</h3>
+      <% @posts.each do |post| %>
+        <%= link_to user_path(post.user.id) do %>
+          <div class="row">
+            <div class="col">
+              <%= post.user.name %>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to post_path(post.id) do %>
+          <div class="row">
+            <div class="col">
+              <%= post.body %>
+            </div>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="col">
+            <p>いいねボタン</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <h3 class="main-h3">ホットワード</h3>
+    </div>
   </div>
 </div>
