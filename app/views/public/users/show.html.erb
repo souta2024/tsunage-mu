@@ -11,8 +11,12 @@
       </div>
       <p>紹介文</p>
       <%= @user.introduction %>
-      <% if @user.id = current_user.id %>
-        <%= link_to "プロフィール編集", edit_user_path %>
+      <% if @user.id == current_user.id %>
+        <div class="row">
+          <div class="col">
+            <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
