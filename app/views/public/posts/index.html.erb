@@ -1,2 +1,22 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <%= form_with model: @post do |f| %>
+        <div class="row">
+          <%= f.label "投稿内容" %>
+          <%= f.text_area :body %>
+        </div>
+        <div class="row">
+          <%= radio_button_tag :post_is_active, "true" %>
+          <%= f.label :is_active_true, "公開" %>
+          <%= radio_button_tag :post_is_active, "false" %>
+          <%= f.label :is_active_false, "非公開" %>
+        </div>
+        <div class="row">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
