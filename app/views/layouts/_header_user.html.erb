@@ -18,6 +18,9 @@
       <%= link_to user_path(current_user.id) do %>
         <li>マイページ</li>
       <% end %>
+      <%= link_to posts_draft_path do %>
+        <li>下書き</li>
+      <% end %>
       <%= link_to direct_messages_path do %>
         <li>ダイレクトメッセージ</li>
       <% end %>
