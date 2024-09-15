@@ -125,10 +125,10 @@ header {
 }
 @-webkit-keyframes btn-bar3 {
   0% {
-    -webkit-transform: translateY(13px) rotate(-45deg);
+    -webkit-transform: translateY(-13px) rotate(-45deg);
   }
   50% {
-    -webkit-transform: translateY(13px) rotate(0);
+    -webkit-transform: translateY(-13px) rotate(0);
   }
   100% {
     -webkit-transform: translateY(0) rotate(0);
@@ -207,10 +207,10 @@ header {
     -webkit-transform: translateY(0) rotate(0);
   }
   50% {
-    -webkit-transform: translateY(13px) rotate(0);
+    -webkit-transform: translateY(-13px) rotate(0);
   }
   100% {
-    -webkit-transform: translateY(13px) rotate(-45deg);
+    -webkit-transform: translateY(-13px) rotate(-45deg);
   }
 }
 @keyframes active-btn-bar3 {
