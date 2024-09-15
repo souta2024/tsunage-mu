@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     put 'users/infomation/:id', to: 'users#update', as: 'user_put'
     delete 'users/infomation/:id', to: 'users#destroy', as: 'user_delete'
 
-    resources :posts, except: [:new]
+    get 'posts/draft'
     get 'posts/update_history'
+    resources :posts, except: [:new]
 
     get 'search', to: 'searches#search'
 
