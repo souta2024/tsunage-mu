@@ -1,9 +1,16 @@
-<div class="container">
+<div class="container main-content-container">
   <div class="row">
     <div class="col-4 offset-4">
-      <p>ユーザーネーム</p>
-      <%= @user.name %>
-      <p>プロフィール</p>
+      <div class="row">
+        <div class="col">
+          <p>ユーザーネーム</p>
+        </div>
+        <div class="col">
+          <%= @user.name %>
+        </div>
+      </div>
+      <p>紹介文</p>
+      <%= @user.introduction %>
       <% if @user.id = current_user.id %>
         <%= link_to "プロフィール編集", edit_user_path %>
       <% end %>
