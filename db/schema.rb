@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_04_125506) do
+ActiveRecord::Schema.define(version: 2024_09_15_173315) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_125506) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "edit_datetime"
     t.index ["post_id"], name: "index_comment_histories_on_post_id"
   end
 
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_125506) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "edit_datetime"
     t.index ["post_id"], name: "index_post_histories_on_post_id"
   end
 
@@ -138,6 +140,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_125506) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.boolean "is_active"
+    t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
