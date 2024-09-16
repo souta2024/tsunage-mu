@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TsunageMu</title>
+    <title class="jquery">つなゲ～ム</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/9cef0bc0f1.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %> <!-- ログイン状況に応じたヘッダーを表示 -->
+      <%= render "layouts/header_user" %>
+    <% elsif admin_signed_in? %>
+      <%= render "layouts/header_admin" %>
+    <% else %>
+      <%= render "layouts/header" %>
+    <% end %>
+    <main>
+      <%= yield %>
+    </main>
+    <%= render "layouts/footer" %>
   </body>
 </html>

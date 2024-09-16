@@ -1,0 +1,45 @@
+<div class="container main-content-container">
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
+        <div class="col">
+          <p>ユーザーネーム</p>
+        </div>
+        <div class="col">
+          <%= @user.name %>
+        </div>
+      </div>
+      <p>紹介文</p>
+      <%= @user.introduction %>
+      <% if @user.id == current_user.id %>
+        <div class="row">
+          <div class="col">
+            <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <h3 class="main-h3"><%= @user.name %>の投稿一覧・いいね一覧</h3>
+      <p><span>投稿一覧タブ</span>or<span>いいね一覧タブ</span></p>
+      <p><span>投稿一覧</span>or<span>いいね一覧</span></p><br>
+      <h3>投稿の部分テンプレート</h3>
+      <% @user_posts.each do |user_post| %>
+        <div class="row">
+          <div class="col">
+            <p>
+            <%= user_post.body %>
+            </p>
+            <p>更新履歴<br>
+              <%= user_post.updated_at %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <h3 class="main-h3">投稿詳細</h3>
+      <p>部分テンプレート</p>
+    </div>
+  </div>
+</div>
