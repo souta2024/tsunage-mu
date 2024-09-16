@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_15_173315) do
+ActiveRecord::Schema.define(version: 2024_09_16_092129) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 2024_09_15_173315) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.text "body"
-    t.boolean "is_public"
-    t.boolean "is_hidden"
+    t.text "body", null: false
+    t.boolean "is_public", null: false
+    t.boolean "is_hidden", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -138,8 +138,8 @@ ActiveRecord::Schema.define(version: 2024_09_15_173315) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.boolean "is_active"
+    t.string "name", null: false
+    t.boolean "is_active", default: true, null: false
     t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
