@@ -2,16 +2,18 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
 
   scope module: :public do
-    resources :users, only: [:edit] do
+    resources :users, only: [:index]
+    
+    scope '/:account_id' do
+      get 'edit', to: 'users#edit', as: 'edit_user'
+      get '', to: 'users#show', as: 'user'
+      patch '', to: 'users#update', as: 'user_patch'
+      put '', to: 'users#update', as: 'user_put'
+      delete '', to: 'users#destroy', as: 'user_delete'
       resource :relationships, only: [:create, :destroy]
       get 'followings', to: 'relationships#followings'
       get 'followers', to: 'relationships#followers'
     end
-    get 'users/index', to: 'users#index', as: 'users'
-    get 'users/infomation/:id', to: 'users#show', as: 'user'
-    patch 'users/infomation/:id', to: 'users#update', as: 'user_patch'
-    put 'users/infomation/:id', to: 'users#update', as: 'user_put'
-    delete 'users/infomation/:id', to: 'users#destroy', as: 'user_delete'
 
     get 'posts/draft'
     get 'posts/update_history'
