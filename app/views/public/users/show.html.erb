@@ -1,31 +1,31 @@
 <div class="container main-content-container">
-  <div class="row">
-    <div class="col-4">
+  <div class="row main-content-row">
+    <div class="col-3 main-content-left">
       <div class="row">
         <div class="col">
           <p>ユーザーネーム</p>
         </div>
         <div class="col">
-          <%= @user.name %>
+          <strong><%= @user.name %></strong>
         </div>
       </div>
       <p>紹介文</p>
       <%= @user.introduction %>
-      <% if @user.id == current_user.id %>
-        <div class="row">
-          <div class="col">
-            <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
-          </div>
-        </div>
-      <% end %>
       <div class="row">
         <dic class="col">
           <p>アカウントID</p>
           <p><%= @user.account_id %></p>
         </dic>
       </div>
+      <% if @user.account_id == current_user.account_id %>
+        <div class="row">
+          <div class="col">
+            <%= link_to "プロフィール編集", edit_user_path(@user.account_id) %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="col-4">
+    <div class="col-6 main-content-center">
       <h3 class="main-h3"><%= @user.name %>の投稿一覧・いいね一覧</h3>
       <p><span>投稿一覧タブ</span>or<span>いいね一覧タブ</span></p>
       <p><span>投稿一覧</span>or<span>いいね一覧</span></p><br>
@@ -43,9 +43,10 @@
         </div>
       <% end %>
     </div>
-    <div class="col-4">
+    <div class="col-3 main-content-right">
       <h3 class="main-h3">投稿詳細</h3>
       <p>部分テンプレート</p>
+      <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
     </div>
   </div>
 </div>
