@@ -21,7 +21,7 @@
     <div class="col-4">
       <h3 class="main-h3">投稿一覧</h3>
       <% @posts.each do |post| %>
-        <%= link_to user_path(post.user.id) do %>
+        <%= link_to user_path(post.user.account_id) do %>
           <div class="row">
             <div class="col">
               <%= post.user.name %>
@@ -31,7 +31,7 @@
         <%= link_to post_path(post.id) do %>
           <div class="row">
             <div class="col">
-              <%= post.body %>
+              <%= simple_format(post.body) %>
             </div>
           </div>
         <% end %>

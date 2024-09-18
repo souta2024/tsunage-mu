@@ -3,17 +3,6 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:index]
-    
-    scope '/:account_id' do
-      get 'edit', to: 'users#edit', as: 'edit_user'
-      get '', to: 'users#show', as: 'user'
-      patch '', to: 'users#update', as: 'user_patch'
-      put '', to: 'users#update', as: 'user_put'
-      delete '', to: 'users#destroy', as: 'user_delete'
-      resource :relationships, only: [:create, :destroy]
-      get 'followings', to: 'relationships#followings'
-      get 'followers', to: 'relationships#followers'
-    end
 
     get 'posts/draft'
     get 'posts/update_history'
@@ -34,6 +23,17 @@ Rails.application.routes.draw do
     get 'options/unsubscribe'
     get 'options/terms_of_service'
     get 'options/user_guide'
+
+    scope '/:account_id' do
+      get 'edit', to: 'users#edit', as: 'edit_user'
+      get '', to: 'users#show', as: 'user'
+      patch '', to: 'users#update', as: 'user_patch'
+      put '', to: 'users#update', as: 'user_put'
+      delete '', to: 'users#destroy', as: 'user_delete'
+      resource :relationships, only: [:create, :destroy]
+      get 'followings', to: 'relationships#followings'
+      get 'followers', to: 'relationships#followers'
+    end
   end
 
   namespace :admin do
