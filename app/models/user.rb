@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 200 }
   validates :account_id, presence: true,
                          uniqueness: true,
-                         length: {in: 1..15},
+                         length: {in: 5..15},
                          format: { with: VALID_ACCOUNT_NAME_REGEX, message: "小文字の半角英字、半角数字、_のみを使用してください" }
 
   has_many :posts, dependent: :destroy
