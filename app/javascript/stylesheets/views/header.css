@@ -25,6 +25,7 @@ header {
   color: #d1d1d1;
   font-size: 1.5rem;
   font-weight: 600;
+  transition: 0.5s ease;
 }
 
 .header-logo:hover {
@@ -32,10 +33,17 @@ header {
 }
 .header-item:hover {
   color: black;
+  transition: 0.5s ease;
 }
 .header-logo:hover,
 .header-item:hover {
   text-decoration: none;
+}
+
+.nav-posts.active,
+.nav-timeline.active,
+.nav-search.active {
+  color: red;
 }
 
 /* ハンバーガーアイコン */
