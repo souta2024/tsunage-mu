@@ -1,0 +1,15 @@
+.post-row {
+  border-top: 3px solid #a4d58c;
+  padding: 5px 0;
+}
+.post-text p {
+  margin-bottom: 0;
+}
+.text-title {
+  color: #efa04c;
+  font-weight: 800;
+}
+.text-label {
+  color: #d7b48f;
+  font-weight: 800;
+}

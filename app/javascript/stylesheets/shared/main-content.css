@@ -8,7 +8,7 @@
 .main-content-col {
   height: fit-content;
   margin: 0 15px;
-  padding: 15px;
+  padding: 15px 15px 0;
   border-radius: 10px;
   background-color: white;
   border: 3px solid #a4d58c;
@@ -23,4 +23,8 @@
 
 .main-content-col .row:last-child .col p:last-child {
   margin-bottom: 0;
+}
+
+.content-link-black {
+  color: black;
 }

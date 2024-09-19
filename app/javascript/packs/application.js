@@ -15,6 +15,7 @@ import "bootstrap";
 import "../stylesheets/application.scss";
 import "../stylesheets/shared/main-content.css";
 import "../stylesheets/views/header.css";
+import "../stylesheets/views/post.css";
 // jsファイルの適用
 import "../views/script.js";
 import "../views/header.js";
