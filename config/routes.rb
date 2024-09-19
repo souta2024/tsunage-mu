@@ -6,14 +6,19 @@ Rails.application.routes.draw do
 
     get 'posts/draft'
     get 'posts/update_history'
-    resources :posts, except: [:new]
+    resources :posts, except: [:new] do
+      post 'favorite', to: 'post_favorites#create'
+      delete 'favorite', to: 'post_favorites#destroy'
+    end
 
     get 'search', to: 'searches#search'
 
-    resources :comments, only: [:show, :create, :edit, :update, :destroy]
+    resources :comments, only: [:show, :create, :edit, :update, :destroy] do
+      post 'favorite', to: 'comments_favofites#create'
+      delete 'favorite', to: 'comments_favofites#destroy'
+    end
     get 'comments/:id/update_history', to: 'comments#update_history'
 
-    resource :post_favorites, :comments_favorites, only: [:create, :destroy]
     resources :direct_messages, only: [:index, :show, :create]
     resources :messages, only: [:create, :destroy]
 
