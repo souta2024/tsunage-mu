@@ -3,6 +3,7 @@
 }
 .main-content-row {
   justify-content: center;
+  margin-bottom: 15px;
 }
 .main-content-col {
   height: fit-content;
@@ -10,6 +11,7 @@
   padding: 15px;
   border-radius: 10px;
   background-color: white;
+  border: 3px solid #a4d58c;
   box-shadow: 5px 4px 5px 0px rgba(142, 142, 142, 0.25);
 }
 .main-col-side {
