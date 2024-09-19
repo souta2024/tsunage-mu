@@ -3,9 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  # 半角英数字のみ受け付ける正規表現
+  VALID_ACCOUNT_NAME_REGEX = /\A[a-z0-9_]+\z/
 
   validates :name, presence: true, length: {in: 1..50}
-  validates :introduction, length: {in: 1..200}
+  validates :introduction, length: { maximum: 200 }
+  validates :account_id, presence: true,
+                         uniqueness: true,
+                         length: {in: 5..15},
+                         format: { with: VALID_ACCOUNT_NAME_REGEX, message: "小文字の半角英字、半角数字、_のみを使用してください" }
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
