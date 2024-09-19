@@ -18,7 +18,7 @@ header {
   z-index: 10;
 }
 .header-logo {
-  color: #d53df4;
+  color: #1dbb48;
   font-weight: bold;
 }
 .header-item {
@@ -28,7 +28,7 @@ header {
 }
 
 .header-logo:hover {
-  color: #d53df4;
+  color: #1dbb48;
 }
 .header-item:hover {
   color: black;
