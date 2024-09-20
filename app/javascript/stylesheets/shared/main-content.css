@@ -1,5 +1,5 @@
 .main-content-container {
-  max-width: 1400px;
+  max-width: 1500px;
 }
 .main-content-row {
   justify-content: center;
@@ -15,10 +15,10 @@
   box-shadow: 5px 4px 5px 0px rgba(142, 142, 142, 0.25);
 }
 .main-col-side {
-  width: 25%;
+  width: 30%;
 }
 .main-col-center {
-  width: 40%;
+  width: 30%;
 }
 
 .main-content-col .row:last-child .col p:last-child {
