@@ -7,19 +7,14 @@
           <span class="text-label"><%= f.label :body, "投稿内容:" %></span><br>
           <%= f.text_area :body, { class: "post-text-area" }  %>
         </div>
-        <div>
-          <%#= radio_button_tag :post_is_active, "true" %>
-          <%#= f.label :is_active_true, "公開" %>
-          <%#= radio_button_tag :post_is_active, "false" %>
-          <%#= f.label :is_active_false, "非公開" %>
-        </div>
-        <div>
-          <%= f.hidden_field :is_draft, value: "0" %>
-          <%= f.check_box :is_draft, {checked_value: "false", unchecked_value: "true"} %>
-          <%= f.label :is_draft, "下書き" %>
-        </div>
-        <div>
-          <%= f.submit %>
+        <div class="">
+          <div class="checkbox is-draft-checkbox">
+            <%= f.check_box :is_draft, checked: false %>
+            <%= f.label :is_draft, "下書き" %>
+          </div>
+          <div class="submit-btn">
+            <%= f.submit %>
+          </div>
         </div>
       <% end %>
     </div>
@@ -36,7 +31,7 @@
           <div>
             <span class="text-label">投稿内容:</span>
             <%= link_to post_path(post.id), class: "content-link-black post-text" do %>
-              <%= simple_format(h(post.body)) %>
+              <%= safe_join(post.body.split("\n").map { |line| tag(:br) + h(line) }) %>
             <% end %>
           </div>
           <div>
