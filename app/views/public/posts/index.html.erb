@@ -4,17 +4,17 @@
       <h3 class="text-title">～投稿フォーム～</h3>
       <%= form_with model: @post do |f| %>
         <div>
-          <%= f.label "投稿内容" %><br>
-          <%= f.text_area :body %>
+          <span class="text-label"><%= f.label :body, "投稿内容:" %></span><br>
+          <%= f.text_area :body, { class: "post-text-area" }  %>
         </div>
-        <div>
-          <%= radio_button_tag :post_is_active, "true" %>
-          <%= f.label :is_active_true, "公開" %>
-          <%= radio_button_tag :post_is_active, "false" %>
-          <%= f.label :is_active_false, "非公開" %>
-        </div>
-        <div>
-          <%= f.submit %>
+        <div class="">
+          <div class="checkbox is-draft-checkbox">
+            <%= f.check_box :is_draft, checked: false %>
+            <%= f.label :is_draft, "下書き" %>
+          </div>
+          <div class="submit-btn">
+            <%= f.submit %>
+          </div>
         </div>
       <% end %>
     </div>
@@ -24,24 +24,24 @@
         <div class="post-row">
           <div class="user-name">
             <span class="text-label">ユーザー名:</span>
-            <%= link_to user_path(post.user.account_id), class: "content-link-black" do %>
+            <%= link_to user_path(post.user.account_id), class: "content-link-black post-text-link" do %>
               <span><strong> <%= post.user.name %></strong></span>
             <% end %>
           </div>
           <div>
             <span class="text-label">投稿内容:</span>
             <%= link_to post_path(post.id), class: "content-link-black post-text" do %>
-              <%= simple_format(h(post.body)) %>
+              <%= safe_join(post.body.split("\n").map { |line| tag(:br) + h(line) }) %>
             <% end %>
           </div>
           <div>
-            <span>いいねボタン</span>
+            <%= render "public/favorites/btn", post: post %>
           </div>
         </div>
       <% end %>
     </div>
     <div class="main-content-col main-col-side">
-      <h3 class="text-title">～ホットワード～</h3>
+      <h3 class="text-title">～投稿詳細～</h3>
     </div>
   </div>
 </div>

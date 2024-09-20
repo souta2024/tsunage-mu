@@ -13,3 +13,8 @@
   color: #d7b48f;
   font-weight: 800;
 }
+
+.post-text-area {
+  width: 100%;
+  min-height: 150px;
+}

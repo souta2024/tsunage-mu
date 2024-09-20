@@ -6,4 +6,8 @@ class Post < ApplicationRecord
   has_many :post_histories, dependent: :destroy
 
   belongs_to :user
+
+  def favorited_by?(user)
+    post_favorites.exists?(user_id: user.id)
+  end
 end
