@@ -31,3 +31,7 @@ end
 Post.find_or_create_by!(body: '本当にいいゲームだった…' << "\n" << 'エンディングでずっと泣いちゃってた…') do |post|
   post.user = test2
 end
+
+Post.find_or_create_by!(body: '<h1>嫌がらせ<h1>') do |post|
+  post.user = test2
+end
