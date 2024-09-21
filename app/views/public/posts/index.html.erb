@@ -7,13 +7,15 @@
           <span class="text-label"><%= f.label :body, "投稿内容:" %></span><br>
           <%= f.text_area :body, { class: "post-text-area" }  %>
         </div>
-        <div class="">
-          <div class="checkbox is-draft-checkbox">
+        <div class="acction-bottons">
+          <div class="checkbox-content is-draft-checkbox-content">
             <%= f.check_box :is_draft, checked: false %>
-            <%= f.label :is_draft, "下書き" %>
+            <%= f.label :is_draft, class: "text-label checkbox-label is-draft-label" do %>
+              <span>下書きにする</span>
+            <% end %>
           </div>
-          <div class="submit-btn">
-            <%= f.submit %>
+          <div class="submit-btn post-submit">
+            <%= f.submit "投稿する", class: "post-submit" %>
           </div>
         </div>
       <% end %>

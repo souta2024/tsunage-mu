@@ -8,7 +8,7 @@
 }
 /*いいねしていない状態*/
 .favorite-inactive .favorite-icon {
-  color: #d1d1d1;
+  color: #757575;
   transition: 0.25s;
 }
 
@@ -28,7 +28,7 @@
   color: #ff9191;
 }
 .favorite-inactive .favorite-count {
-  color: #d1d1d1;
+  color: #757575;
   transition: 0.25s;
 }
 .favorite-inactive:hover .favorite-count {
@@ -45,7 +45,7 @@
   transition: 0.25s;
 }
 .favorite-inactive .favorite-text {
-  color: #d1d1d1;
+  color: #757575;
   transition: 0.25s;
 }
 .favorite-inactive:hover .favorite-text {

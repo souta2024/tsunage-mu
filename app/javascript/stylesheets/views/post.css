@@ -17,4 +17,21 @@
 .post-text-area {
   width: 100%;
   min-height: 150px;
+  display: block;
+}
+.acction-bottons {
+  margin: 11px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.is-draft-label {
+  margin-bottom: 0;
+}
+.checkbox-content {
+  display: flex;
+  margin-right: 10px
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
 }
