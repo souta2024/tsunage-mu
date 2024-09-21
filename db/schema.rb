@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_125506) do
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.text "body", null: false
-    t.boolean "is_public", default: false, null: false
+    t.boolean "is_draft", default: true, null: false
     t.boolean "is_hidden", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
