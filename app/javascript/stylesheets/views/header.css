@@ -242,7 +242,6 @@ header {
   width: 20%;
   min-height: 100%;
   min-width: 123px;
-  z-index: 9;
   transition: all .75s ease;
 }
 #sp-menu ul {
