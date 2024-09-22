@@ -46,7 +46,8 @@ class Public::PostsController < ApplicationController
   end
 
   def update_history
-    @post_histories = PostHistory.all
+    @post_histories = PostHistory.where(post_id: params[:post_id])
+    @post = Post.find(params[:post_id])
   end
 
   private

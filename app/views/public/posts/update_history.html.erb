@@ -1,23 +1,54 @@
-<div class="container">
-    <div class="row">
-        <div class="col-4 offset-4">
-          <h3>更新履歴</h3>
-          <% @post_histories.each do |post_history| %>
-            <div class="row">
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <%= post_history.body %>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <%= post_history.edit_datetime %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-side">
+      <h3 class="text-heading">～ユーザー情報～</h3>
+    </div>
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～更新履歴～</h3>
+      <% @post_histories.each do |post_history| %>
+        <div class="post-row">
+          <div class="user-name">
+            <span class="text-title">ユーザー名: </span>
+            <%= link_to user_path(post_history.post.user.account_id), class: "content-link-black" do %>
+              <span><strong><%= post_history.post.user.name %></strong></span>
+            <% end %>
+          </div>
+          <div>
+            <span class="text-title">投稿内容:</span><br>
+            <%= content_tag :div, class: "content-link-black post-text" do %>
+              <%= safe_join(post_history.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+            <% end %>
+          </div>
+          <div class="post-history-content">
+            <span class="text-title">最終更新日時:</span>
+            <span class="history-datetime"><%= l @post.updated_at, format: :long %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="main-content-col main-col-side">
+      <h3 class="text-heading">～最新投稿～</h3>
+        <div class="post-row">
+          <div class="user-name">
+            <span class="text-title">ユーザー名: </span>
+            <%= link_to user_path(@post.user.account_id), class: "content-link-black" do %>
+              <span><strong><%= @post.user.name %></strong></span>
+            <% end %>
+          </div>
+          <div>
+            <span class="text-title">投稿内容:</span><br>
+            <%= content_tag :div, class: "content-link-black post-text" do %>
+              <%= safe_join(@post.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+            <% end %>
+          </div>
+          <div>
+            <%= render "public/favorites/btn", post: @post %>
+          </div>
+          <div class="post-history-content">
+              <span class="text-title">最終更新日時:</span>
+              <span class="history-datetime"><%= l @post.updated_at, format: :long %></span>
+          </div>
         </div>
     </div>
+  </div>
 </div>
