@@ -14,8 +14,14 @@ body {
   // background-color: #e0e2e7;
 }
 
+header {
+  position: relative;
+  z-index: 999;
+}
 main {
   padding-top: 30px;
+  position: relative;
+  z-index: 99;
 }
 
 a:hover {
