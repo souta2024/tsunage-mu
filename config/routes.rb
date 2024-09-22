@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     get 'search', to: 'searches#search'
 
     resources :comments, only: [:show, :create, :edit, :update, :destroy] do
-      post 'favorite', to: 'comments_favofites#create'
-      delete 'favorite', to: 'comments_favofites#destroy'
+      post 'favorite', to: 'comment_favorites#create'
+      delete 'favorite', to: 'comment_favorites#destroy'
       get 'update_history'
     end
 
