@@ -1,0 +1,13 @@
+<% if comment.favorited_by?(current_user) %>
+  <%= link_to comment_favorite_path(comment.id), method: :delete, class: "favorite-link favorite-active" do %>
+    <i class="fa-solid fa-heart favorite-icon"></i>
+    <span class="favorite-count"><%= comment.comment_favorites.count %></span>
+    <span class="favorite-text">いいね解除</span>
+  <% end %>
+<% else %>
+  <%= link_to comment_favorite_path(comment.id), method: :post, class: "favorite-link favorite-inactive" do %>
+    <i class="fa-regular fa-heart favorite-icon"></i>
+    <span class="favorite-count"><%= comment.comment_favorites.count %></span>
+    <span class="favorite-text">いいねする</span>
+  <% end %>
+<% end %>

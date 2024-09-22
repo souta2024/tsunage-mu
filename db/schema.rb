@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 2024_09_04_125506) do
   end
 
   create_table "comment_histories", force: :cascade do |t|
-    t.integer "post_id", null: false
+    t.integer "comment_id", null: false
     t.text "body", null: false
     t.datetime "edit_datetime", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_comment_histories_on_post_id"
+    t.index ["comment_id"], name: "index_comment_histories_on_comment_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_125506) do
 
   add_foreign_key "comment_favorites", "comments"
   add_foreign_key "comment_favorites", "users"
-  add_foreign_key "comment_histories", "posts"
+  add_foreign_key "comment_histories", "comments"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "entries", "direct_messages"

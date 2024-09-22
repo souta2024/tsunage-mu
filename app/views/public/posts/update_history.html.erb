@@ -1,7 +1,6 @@
 <div class="container main-content-container">
   <div class="row main-content-row">
-    <div class="main-content-col main-col-side">
-      <h3 class="text-heading">～ユーザー情報～</h3>
+    <div class="main-content-col-blank main-col-side">
     </div>
     <div class="main-content-col main-col-center">
       <h3 class="text-heading">～更新履歴～</h3>
@@ -42,7 +41,7 @@
             <% end %>
           </div>
           <div>
-            <%= render "public/favorites/btn", post: @post %>
+            <%= render "public/post_favorites/btn", post: @post %>
           </div>
           <div class="post-history-content">
               <span class="text-title">最終更新日時:</span>

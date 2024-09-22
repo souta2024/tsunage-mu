@@ -14,6 +14,11 @@
   border: 3px solid #a4d58c;
   box-shadow: 5px 4px 5px 0px rgba(142, 142, 142, 0.25);
 }
+.main-content-col-blank {
+  height: fit-content;
+  margin: 0 15px;
+  padding: 15px 15px 0;
+}
 .main-col-side {
   width: 30%;
   position: sticky;
