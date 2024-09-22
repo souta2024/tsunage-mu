@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
-  has_many :comments_favorites, dependent: :destroy
+  has_many :comment_favorites, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
   # フォロー・フォロワー　リレーション
