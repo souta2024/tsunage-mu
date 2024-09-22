@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :DESC)
     @post = Post.new
   end
 
@@ -41,12 +41,16 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def timeline
+
+  end
+
   def draft
 
   end
 
   def update_history
-    @post_histories = PostHistory.where(post_id: params[:post_id])
+    @post_histories = PostHistory.where(post_id: params[:post_id]).order(created_at: :DESC)
     @post = Post.find(params[:post_id])
   end
 

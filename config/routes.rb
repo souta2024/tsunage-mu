@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:index]
-
+    get 'posts/timeline'
     get 'posts/draft'
     resources :posts, except: [:new] do
       post 'favorite', to: 'post_favorites#create'
@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :create, :edit, :update, :destroy] do
       post 'favorite', to: 'comments_favofites#create'
       delete 'favorite', to: 'comments_favofites#destroy'
+      get 'update_history'
     end
-    get 'comments/:id/update_history', to: 'comments#update_history'
 
     resources :direct_messages, only: [:index, :show, :create]
     resources :messages, only: [:create, :destroy]
