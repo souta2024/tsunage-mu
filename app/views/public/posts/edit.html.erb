@@ -1,9 +1,17 @@
-<div class="container">
-  <div class="row">
-    <div class="col-4 offset-4">
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～編集フォーム～</h3>
       <%= form_with model: @post do |f| %>
-        <%= f.text_field :body %>
-        <%= f.submit %>
+        <div>
+          <span class="text-title"><%= f.label :body, "投稿内容:" %></span><br>
+          <%= f.text_area :body, { class: "post-text-area" }  %>
+        </div>
+        <div class="acction-bottons">
+          <div class="submit-btn post-submit">
+            <%= f.submit "編集する", class: "post-submit" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

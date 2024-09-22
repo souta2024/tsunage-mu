@@ -1,44 +1,88 @@
-<div class="container">
-  <div class="row">
-    <div class="col-4">
-      <h3 class="main-h3">コメントフォーム</h3>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-side">
+      <h3 class="text-heading">～コメントフォーム～</h3>
+      <%= form_with model: @comment do |f| %>
+        <div>
+          <span class="text-title"><%= f.label :body, "投稿内容:" %></span><br>
+          <%= f.text_area :body, { class: "post-text-area" }  %>
+        </div>
+        <div class="acction-bottons">
+          <div class="checkbox-content is-draft-checkbox-content">
+            <%= f.check_box :is_draft, checked: false %>
+            <%= f.label :is_draft, class: "text-label checkbox-label is-draft-label" do %>
+              <span>下書きにする</span>
+            <% end %>
+          </div>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <div class="submit-btn post-submit">
+            <%= f.submit "投稿する", class: "post-submit" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="col-4">
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～投稿詳細～</h3>
       <% if @post != nil %>
-        <div class="row">
-          <div class="col">
-            <%= @post.user.name %>
+        <div class="post-row">
+          <div class="user-name">
+            <span class="text-title">ユーザー名:</span>
+            <%= link_to user_path(@post.user.account_id), class: "content-link-black post-text-link" do %>
+              <span><strong> <%= @post.user.name %></strong></span>
+            <% end %>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <%= @post.body %>
+          <div>
+            <span class="text-title">投稿内容:</span><br>
+            <%= content_tag :div, class: "content-link-black post-text" do %>
+              <%= safe_join(@post.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+            <% end %>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <%= link_to posts_update_history_path do %>
-              <p>更新履歴</p>
-              <%= @post.updated_at %>
+          <div>
+            <%= render "public/favorites/btn", post: @post %>
+          </div>
+          <div class="post-history-content">
+            <span class="text-title">更新履歴:</span>
+            <%= link_to posts_update_history_path, class: "history-link content-link-black" do %>
+              <span class="history-datetime"><strong><%= @post.updated_at %></strong></span>
             <% end %>
           </div>
         </div>
         <% if @post.user.id == current_user.id %>
-          <div class="row">
-            <div class="col">
-              <%= link_to "編集する", edit_post_path(@post.id) %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <%= link_to "削除する", post_path(@post.id), method: :delete %>
-            </div>
+          <div class="edit-delete-container">
+            <%= link_to edit_post_path(@post.id), class: "edit-link" do %>
+              <span>編集する </span>
+              <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
+            <%= button_to "削除する", post_path(@post.id), { method: :delete, "form_class": "delete-btn-form" } %>
           </div>
         <% end %>
       <% else %>
         <div class="row">
           <div class="col">
-            <p>削除された投稿です</p>
+            <p>存在しない投稿です</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="main-content-col main-col-side">
+      <h3 class="text-heading">～コメント一覧～</h3>
+      <% @comments.each do |comment| %>
+        <div class="post-row">
+          <div class="user-name">
+            <span class="text-title">ユーザー名:</span>
+            <%= link_to user_path(comment.user.account_id), class: "content-link-black post-text-link" do %>
+              <span><strong> <%= comment.user.name %></strong></span>
+            <% end %>
+          </div>
+          <div>
+            <span class="text-title">投稿内容:</span><br>
+            <%= link_to comment_path(comment.id), class: "content-link-black post-text" do %>
+              <%= safe_join(comment.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+            <% end %>
+          </div>
+          <div>
+            <%#= render "public/favorites/btn", post: post %>
+            いいねボタン
           </div>
         </div>
       <% end %>

@@ -1,37 +1,39 @@
 <div class="container main-content-container">
   <div class="row main-content-row">
     <div class="main-content-col main-col-side">
-      <h3 class="text-title">～投稿フォーム～</h3>
+      <h3 class="text-heading">～投稿フォーム～</h3>
       <%= form_with model: @post do |f| %>
         <div>
-          <span class="text-label"><%= f.label :body, "投稿内容:" %></span><br>
+          <span class="text-title"><%= f.label :body, "投稿内容:" %></span><br>
           <%= f.text_area :body, { class: "post-text-area" }  %>
         </div>
-        <div class="">
-          <div class="checkbox is-draft-checkbox">
+        <div class="acction-bottons">
+          <div class="checkbox-content is-draft-checkbox-content">
             <%= f.check_box :is_draft, checked: false %>
-            <%= f.label :is_draft, "下書き" %>
+            <%= f.label :is_draft, class: "text-label checkbox-label is-draft-label" do %>
+              <span>下書きにする</span>
+            <% end %>
           </div>
-          <div class="submit-btn">
-            <%= f.submit %>
+          <div class="submit-btn post-submit">
+            <%= f.submit "投稿する", class: "post-submit" %>
           </div>
         </div>
       <% end %>
     </div>
     <div class="main-content-col main-col-center">
-      <h3 class="text-title">～投稿一覧～</h3>
+      <h3 class="text-heading">～投稿一覧～</h3>
       <% @posts.each do |post| %>
         <div class="post-row">
           <div class="user-name">
-            <span class="text-label">ユーザー名:</span>
+            <span class="text-title">ユーザー名:</span>
             <%= link_to user_path(post.user.account_id), class: "content-link-black post-text-link" do %>
               <span><strong> <%= post.user.name %></strong></span>
             <% end %>
           </div>
           <div>
-            <span class="text-label">投稿内容:</span>
+            <span class="text-title">投稿内容:</span><br>
             <%= link_to post_path(post.id), class: "content-link-black post-text" do %>
-              <%= safe_join(post.body.split("\n").map { |line| tag(:br) + h(line) }) %>
+              <%= safe_join(post.body.split("\n").map { |line| h(line) }, tag(:br)) %>
             <% end %>
           </div>
           <div>
@@ -41,7 +43,7 @@
       <% end %>
     </div>
     <div class="main-content-col main-col-side">
-      <h3 class="text-title">～投稿詳細～</h3>
+      <h3 class="text-heading">～投稿詳細～</h3>
     </div>
   </div>
 </div>

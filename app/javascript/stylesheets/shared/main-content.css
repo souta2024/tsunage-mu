@@ -16,6 +16,10 @@
 }
 .main-col-side {
   width: 30%;
+  position: sticky;
+  top: 90px;
+  right: 0;
+  z-index: 1;
 }
 .main-col-center {
   width: 30%;
