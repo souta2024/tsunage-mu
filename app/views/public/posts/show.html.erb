@@ -26,9 +26,9 @@
       <% if @post != nil %>
         <div class="post-row">
           <div class="user-name">
-            <span class="text-title">ユーザー名:</span>
-            <%= link_to user_path(@post.user.account_id), class: "content-link-black post-text-link" do %>
-              <span><strong> <%= @post.user.name %></strong></span>
+            <span class="text-title">ユーザー名: </span>
+            <%= link_to user_path(@post.user.account_id), class: "content-link-black" do %>
+              <span><strong><%= @post.user.name %></strong></span>
             <% end %>
           </div>
           <div>
@@ -41,9 +41,11 @@
             <%= render "public/favorites/btn", post: @post %>
           </div>
           <div class="post-history-content">
-            <span class="text-title">更新履歴:</span>
-            <%= link_to posts_update_history_path, class: "history-link content-link-black" do %>
-              <span class="history-datetime"><strong><%= @post.updated_at %></strong></span>
+            <% if @post.post_histories.present? %>
+              <span class="text-title">最終更新日時:</span>
+              <%= link_to post_update_history_path(@post.id), class: "history-link content-link-black" do %>
+                <span class="history-datetime"><strong><%= l @post.updated_at, format: :long %></strong></span>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -70,7 +72,7 @@
         <div class="post-row">
           <div class="user-name">
             <span class="text-title">ユーザー名:</span>
-            <%= link_to user_path(comment.user.account_id), class: "content-link-black post-text-link" do %>
+            <%= link_to user_path(comment.user.account_id), class: "content-link-black" do %>
               <span><strong> <%= comment.user.name %></strong></span>
             <% end %>
           </div>
