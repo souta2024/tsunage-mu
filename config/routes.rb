@@ -5,10 +5,10 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
 
     get 'posts/draft'
-    get 'posts/update_history'
     resources :posts, except: [:new] do
       post 'favorite', to: 'post_favorites#create'
       delete 'favorite', to: 'post_favorites#destroy'
+      get 'update_history'
     end
 
     get 'search', to: 'searches#search'
