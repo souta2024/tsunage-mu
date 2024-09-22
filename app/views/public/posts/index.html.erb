@@ -39,6 +39,15 @@
           <div>
             <%= render "public/favorites/btn", post: post %>
           </div>
+          <div>
+            <% if post.post_histories.present? %>
+              <span class="text-title">最終更新日時:</span>
+              <%= link_to posts_update_history_path, class: "history-link content-link-black" do %>
+                <% latest_post_history = post.post_histories.order(created_at: :desc).first %>
+                <span class="history-datetime"><strong><%= latest_post_history.edit_datetime %></strong></span>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>

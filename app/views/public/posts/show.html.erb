@@ -50,7 +50,7 @@
         <% if @post.user.id == current_user.id %>
           <div class="edit-delete-container">
             <%= link_to edit_post_path(@post.id), class: "edit-link" do %>
-              <span>編集する </span>
+              <span>編集画面へ </span>
               <i class="fa-solid fa-arrow-right"></i>
             <% end %>
             <%= button_to "削除する", post_path(@post.id), { method: :delete, "form_class": "delete-btn-form" } %>
