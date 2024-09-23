@@ -1,0 +1,33 @@
+<% favorite_posts.each do |favorite_post| %>
+  <div class="post-row">
+    <div class="user-name">
+      <span class="text-title">ユーザー名: </span>
+      <span><strong><%= favorite_post.user.name %></strong></span>
+    </div>
+    <div class="user-name">
+      <span class="text-title">アカウントID: </span>
+      <span><strong><%= favorite_post.user.account_id %></strong></span>
+    </div>
+    <div>
+      <span class="text-title">投稿内容:</span><br>
+      <%= link_to post_path(favorite_post.id), class: "content-link-black post-text-link" do %>
+        <%= safe_join(favorite_post.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+      <% end %>
+    </div>
+    <div>
+      <%= render "public/post_favorites/btn", post: favorite_post %>
+    </div>
+    <div>
+      <span class="text-title">投稿日時:</span>
+      <span class="history-datetime"><%= time_ago_in_words(favorite_post.created_at) %>前</span>
+    </div>
+    <div>
+      <% if favorite_post.post_histories.present? %>
+        <span class="text-title">最終更新日時:</span>
+        <%= link_to post_update_history_path(favorite_post.id), class: "history-link content-link-black" do %>
+          <span class="history-datetime"><strong><%= l favorite_post.updated_at, format: :long %></strong></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
