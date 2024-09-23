@@ -18,6 +18,7 @@ import "../stylesheets/views/header.css";
 import "../stylesheets/views/post.css";
 import "../stylesheets/views/post_show.css";
 import "../stylesheets/views/favorite.css";
+import "../stylesheets/views/user.css";
 // jsファイルの適用
 import "../views/script.js";
 import "../views/header.js";

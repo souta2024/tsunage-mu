@@ -1,47 +1,47 @@
 <div class="container main-content-container">
   <div class="row main-content-row">
     <div class="main-content-col main-col-side">
-      <div class="row">
-        <div class="col">
-          <p>ユーザーネーム</p>
+      <h3 class="text-heading">～ユーザー詳細～</h3>
+      <div class="post-row">
+        <div class="user-name">
+          <span class="text-title">ユーザー名: </span>
+          <span><%= @user.name %></span>
         </div>
-        <div class="col">
-          <strong><%= @user.name %></strong>
+        <div class="user-name">
+          <span class="text-title">アカウントID: </span>
+          <span><%= @user.account_id %></span>
         </div>
-      </div>
-      <p>紹介文</p>
-      <%= @user.introduction %>
-      <div class="row">
-        <dic class="col">
-          <p>アカウントID</p>
-          <p><%= @user.account_id %></p>
-        </dic>
-      </div>
-      <% if @user.account_id == current_user.account_id %>
-        <div class="row">
-          <div class="col">
-            <%= link_to "プロフィール編集", edit_user_path(@user.account_id) %>
+        <div>
+          <span class="text-title">紹介文:</span><br>
+          <% if @user.introduction.present? %>
+            <%= content_tag :div, class: "content-link-black post-text" do %>
+              <%= safe_join(@user.introduction.split("\n").map { |line| h(line) }, tag(:br)) %>
+            <% end %>
+          <% end %>
+        </div>
+        <% if @user.account_id == current_user.account_id %>
+          <div>
+            <%= link_to edit_user_path(@user.account_id), class: "edit-link" do %>
+              <span>プロフィール編集画面へ </span>
+              <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
+
+
     <div class="main-content-col main-col-center">
       <h3 class="main-h3"><%= @user.name %>の投稿一覧・いいね一覧</h3>
-      <p><span>投稿一覧タブ</span>or<span>いいね一覧タブ</span></p>
-      <p><span>投稿一覧</span>or<span>いいね一覧</span></p><br>
-      <h3>投稿の部分テンプレート</h3>
-      <% @user_posts.each do |user_post| %>
-        <div class="row">
-          <div class="col">
-            <p>
-            <%= simple_format(user_post.body) %>
-            </p>
-            <p>更新履歴<br>
-              <%= user_post.updated_at %>
-            </p>
-          </div>
+      <div class="user-posts-favorites-tabs">
+        <div class="user-tab">
+          <span>投稿一覧タブ</span>
         </div>
-      <% end %>
+        <div class="user-tab">
+          <span>いいね一覧タブ</span>
+        </div>
+      </div>
+      <%= render "public/users/user_posts", user_posts: @user_posts %>
     </div>
     <div class="main-content-col main-col-side">
       <h3 class="main-h3">投稿詳細</h3>
