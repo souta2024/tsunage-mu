@@ -50,8 +50,8 @@ class Public::PostsController < ApplicationController
   end
 
   def update_history
-    @post_histories = PostHistory.where(post_id: params[:post_id]).order(created_at: :DESC)
     @post = Post.find(params[:post_id])
+    @post_histories = @post.post_histories.order(created_at: :DESC)
   end
 
   private

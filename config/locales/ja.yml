@@ -90,11 +90,11 @@ ja:
     - :day
   datetime:
     distance_in_words:
-      about_x_hours: 約%{count}時間
-      about_x_months: 約%{count}ヶ月
-      about_x_years: 約%{count}年
+      about_x_hours: "約%{count}時間"
+      about_x_months: "約%{count}ヶ月"
+      about_x_years: "約%{count}年"
       almost_x_years: "%{count}年弱"
-      half_a_minute: 30秒前後
+      half_a_minute: "30秒前後"
       less_than_x_seconds: "%{count}秒未満"
       less_than_x_minutes: "%{count}分未満"
       over_x_years: "%{count}年以上"

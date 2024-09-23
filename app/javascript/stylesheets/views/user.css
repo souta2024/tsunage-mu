@@ -1,0 +1,22 @@
+.user-post-row {
+  border-top: none;
+  border-bottom: 3px solid #a4d58c;
+}
+.user-post-row:last-child {
+  border-bottom: none;
+}
+
+.user-posts-favorites-tabs {
+  border-bottom: 3px solid #a4d58c;
+  display: flex;
+}
+.user-tab {
+  width: 50%;
+}
+.user-tab span {
+  display: flex;
+  justify-content: center;
+}
+.user-posts-favorites-tabs .user-tab:first-child {
+  border-right: 3px solid #a4d58c;
+}

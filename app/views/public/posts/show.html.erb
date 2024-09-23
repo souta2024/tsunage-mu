@@ -31,6 +31,10 @@
               <span><strong><%= @post.user.name %></strong></span>
             <% end %>
           </div>
+          <div class="user-name">
+            <span class="text-title">アカウントID: </span>
+            <span><%= @post.user.account_id %></span>
+          </div>
           <div>
             <span class="text-title">投稿内容:</span><br>
             <%= content_tag :div, class: "content-link-black post-text" do %>
@@ -39,6 +43,10 @@
           </div>
           <div>
             <%= render "public/post_favorites/btn", post: @post %>
+          </div>
+          <div>
+            <span class="text-title">投稿日時:</span>
+            <span class="history-datetime"><%= time_ago_in_words(@post.created_at) %>前</span>
           </div>
           <div class="post-history-content">
             <% if @post.post_histories.present? %>
