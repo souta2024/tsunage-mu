@@ -4,9 +4,15 @@ class Public::CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.new(comment_params)
-    comment.user_id = current_user.id
-    comment.save
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    if @comment.save
+      redirect_to post_path(@comment.post.id)
+    else
+      @post = Post.find_by(id: @comment.post_id)
+      @comments = @post.comments
+      render 'public/posts/show'
+    end
   end
 
   def edit
