@@ -6,7 +6,7 @@
   border-bottom: none;
 }
 
-.user-posts-favorites-tabs {
+.post-favorite-tabs {
   border-bottom: 3px solid #a4d58c;
   display: flex;
 }
@@ -19,4 +19,23 @@
 }
 .user-posts-favorites-tabs .user-tab:first-child {
   border-right: 3px solid #a4d58c;
+}
+
+/*タブ切り替え*/
+.tab-active {
+  color: #FFF;
+  background: #19b5d1;
+  transition: all 0.2s ease-in-out;
+}
+.tabbox {
+  display: none;
+  padding: 15px;
+}
+.box-show {
+  display: block;
+}
+.user-tab:hover {
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+  cursor : pointer;
 }

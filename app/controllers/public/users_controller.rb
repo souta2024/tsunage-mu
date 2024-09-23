@@ -8,8 +8,11 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find_by(account_id: params[:account_id])
-    @user_posts = @user.posts.order(created_at: :DESC)
-    @user_favorites = @user.post_favorites.order(created_at: :DESC)
+    @user_posts = @user.posts.order(created_at: :desc)
+    @user_comments = @user.comments.order(created_at: :desc)
+    @favorite_posts = PostFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:post)
+
+
   end
 
   def update

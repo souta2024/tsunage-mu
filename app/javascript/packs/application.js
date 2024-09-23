@@ -22,6 +22,7 @@ import "../stylesheets/views/user.css";
 // jsファイルの適用
 import "../views/script.js";
 import "../views/header.js";
+import "../views/user.js";
 
 Rails.start()
 Turbolinks.start()

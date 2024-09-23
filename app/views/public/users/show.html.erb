@@ -1,5 +1,6 @@
 <div class="container main-content-container">
   <div class="row main-content-row">
+    <!--メイン左側-->
     <div class="main-content-col main-col-side">
       <h3 class="text-heading">～ユーザー詳細～</h3>
       <div class="post-row">
@@ -29,20 +30,38 @@
         <% end %>
       </div>
     </div>
-
-
+    <!--メイン中央-->
     <div class="main-content-col main-col-center">
       <h3 class="main-h3"><%= @user.name %>の投稿一覧・いいね一覧</h3>
-      <div class="user-posts-favorites-tabs">
-        <div class="user-tab">
-          <span>投稿一覧タブ</span>
+      <!--選択タブ-->
+      <div class="post-favorite-tabs">
+        <div class="user-tab tab-active">
+          <span>投稿一覧</span>
         </div>
         <div class="user-tab">
-          <span>いいね一覧タブ</span>
+          <span>コメント一覧</span>
+        </div>
+        <div class="user-tab">
+          <span>投稿いいね一覧</span>
+        </div>
+        <div class="user-tab">
+          <span>コメントいいね一覧</span>
         </div>
       </div>
-      <%= render "public/users/user_posts", user_posts: @user_posts %>
+      <!--タブで選択した要素-->
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <%= render "public/users/user_posts", user_posts: @user_posts %>
+        </div>
+        <div class="tabbox">
+          <%= render "public/users/user_comments", user_comments: @user_comments %>
+        </div>
+        <div class="tabbox">
+          <%= render "public/users/user_favorite_posts", favorite_posts: @favorite_posts %>
+        </div>
+      </div>
     </div>
+    <!--メイン右側-->
     <div class="main-content-col main-col-side">
       <h3 class="main-h3">投稿詳細</h3>
       <p>部分テンプレート</p>
