@@ -36,16 +36,25 @@
       <!--選択タブ-->
       <div class="post-favorite-tabs">
         <div class="user-tab tab-active">
-          <span>投稿一覧タブ</span>
+          <span>投稿一覧</span>
         </div>
         <div class="user-tab">
-          <span>いいね一覧タブ</span>
+          <span>コメント一覧</span>
+        </div>
+        <div class="user-tab">
+          <span>投稿いいね一覧</span>
+        </div>
+        <div class="user-tab">
+          <span>コメントいいね一覧</span>
         </div>
       </div>
       <!--タブで選択した要素-->
       <div class="tabbox-contents">
         <div class="tabbox box-show">
           <%= render "public/users/user_posts", user_posts: @user_posts %>
+        </div>
+        <div class="tabbox">
+          <%= render "public/users/user_comments", user_comments: @user_comments %>
         </div>
         <div class="tabbox">
           <%= render "public/users/user_favorite_posts", favorite_posts: @favorite_posts %>
