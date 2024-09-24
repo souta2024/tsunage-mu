@@ -17,7 +17,7 @@
             <% end %>
           </div>
           <div>
-            <%= render "public/comment_favorites/btn", comment: @comment %>
+            <%= render "public/favorites/comment_btn", comment: @comment %>
           </div>
           <div class="post-history-content">
             <% if @comment.comment_histories.present? %>
