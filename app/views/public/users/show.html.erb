@@ -51,13 +51,16 @@
       <!--タブで選択した要素-->
       <div class="tabbox-contents">
         <div class="tabbox box-show">
-          <%= render "public/users/user_posts", user_posts: @user_posts %>
+          <%= render "public/conversations/post_items", post_items: @user_posts %>
         </div>
         <div class="tabbox">
-          <%= render "public/users/user_comments", user_comments: @user_comments %>
+          <%= render "public/conversations/comment_items", comment_items: @user_comments %>
         </div>
         <div class="tabbox">
-          <%= render "public/users/user_favorite_posts", favorite_posts: @favorite_posts %>
+          <%= render "public/conversations/post_items", post_items: @favorite_posts %>
+        </div>
+        <div class="tabbox">
+          <%= render "public/conversations/comment_items", comment_items: @favorite_comments %>
         </div>
       </div>
     </div>

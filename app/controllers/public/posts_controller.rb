@@ -42,7 +42,7 @@ class Public::PostsController < ApplicationController
   end
 
   def timeline
-
+    
   end
 
   def draft
