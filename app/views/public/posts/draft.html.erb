@@ -1,1 +1,15 @@
-<h1>下書き一覧</h1>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-side">
+      <h3 class="text-heading">～新規投稿フォーム～</h3>
+      <%= render "public/conversations/post_draft_form", post: @post %>
+    </div>
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～下書き一覧～</h3>
+      <%= render "public/conversations/post_draft_items", post_items: @posts %>
+    </div>
+    <div class="main-content-col main-col-side">
+      <h3 class="text-heading">～下書き詳細～</h3>
+    </div>
+  </div>
+</div>

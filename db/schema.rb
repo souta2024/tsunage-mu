@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_125506) do
     t.text "body", null: false
     t.boolean "is_draft", default: true, null: false
     t.boolean "is_hidden", default: false, null: false
+    t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
