@@ -1,10 +1,10 @@
 <header>
   <nav class="header-items">
     <h2><%= link_to "つなゲ～ム", root_path, class: "header-logo" %></h2>
-    <%= link_to "最新投稿", posts_path, class: "header-item" %>
-    <%= link_to "タイムライン", posts_path, class: "header-item" %>
-    <%= link_to "検索", search_path, class: "header-item" %>
-    <p>ユーザー情報</p>
+    <%= link_to "最新投稿", posts_path, class: "header-item nav-posts" %>
+    <%= link_to "タイムライン", posts_timeline_path, class: "header-item nav-timeline" %>
+    <%= link_to "検索", search_path, class: "header-item nav-search" %>
+    <span>ユーザー情報</span>
     <div id="hm-icon">
       <%= link_to "#", class: "menu-trigger" do %>
         <span></span>
@@ -15,7 +15,7 @@
   </nav>
   <nav id="sp-menu">
     <ul>
-      <%= link_to user_path(current_user.id) do %>
+      <%= link_to user_path(current_user.account_id) do %>
         <li>マイページ</li>
       <% end %>
       <%= link_to posts_draft_path do %>

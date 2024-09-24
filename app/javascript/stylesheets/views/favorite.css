@@ -1,0 +1,55 @@
+.favorite-link:hover {
+  text-decoration: none;
+}
+/*いいねしている状態*/
+.favorite-active .favorite-icon {
+  color: #ff9191;
+  transition: 0.25s;
+}
+/*いいねしていない状態*/
+.favorite-inactive .favorite-icon {
+  color: #757575;
+  transition: 0.25s;
+}
+
+.favorite-active:hover .favorite-icon {
+  filter: drop-shadow(0 0 6px #ff9191);
+  transition: 0.25s;
+}
+.favorite-inactive:hover .favorite-icon {
+  color: #ff9191;
+  transition: 0.25s;
+}
+/*いいね数*/
+.favorite-active .favorite-count {
+  color: #ff9191;
+}
+.favorite-active:hover .favorite-count {
+  color: #ff9191;
+}
+.favorite-inactive .favorite-count {
+  color: #757575;
+  transition: 0.25s;
+}
+.favorite-inactive:hover .favorite-count {
+  color: #ff9191;
+  transition: 0.25s;
+}
+/*いいねの文字*/
+.favorite-active .favorite-text {
+  color: #ff9191;
+}
+.favorite-active:hover .favorite-text {
+  color: #ff9191;
+  text-decoration: underline #ff9191;
+  transition: 0.25s;
+}
+.favorite-inactive .favorite-text {
+  color: #757575;
+  transition: 0.25s;
+}
+.favorite-inactive:hover .favorite-text {
+  color: #ff9191;
+  text-decoration: underline #ff9191;
+  transition: 0.25s;
+}

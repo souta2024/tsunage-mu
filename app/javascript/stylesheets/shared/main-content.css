@@ -1,0 +1,38 @@
+.main-content-container {
+  max-width: 1500px;
+}
+.main-content-row {
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.main-content-col {
+  height: fit-content;
+  margin: 0 15px;
+  padding: 15px 15px 0;
+  border-radius: 10px;
+  background-color: white;
+  border: 3px solid #a4d58c;
+  box-shadow: 5px 4px 5px 0px rgba(142, 142, 142, 0.25);
+}
+.main-content-col-blank {
+  height: fit-content;
+  margin: 0 15px;
+  padding: 15px 15px 0;
+}
+.main-col-side {
+  width: 30%;
+  position: sticky;
+  top: 90px;
+  right: 0;
+}
+.main-col-center {
+  width: 30%;
+}
+
+.main-content-col .row:last-child .col p:last-child {
+  margin-bottom: 0;
+}
+
+.content-link-black {
+  color: black;
+}

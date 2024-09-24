@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :DESC)
     @post = Post.new
   end
 
@@ -16,6 +16,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def edit
@@ -39,17 +41,22 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def timeline
+
+  end
+
   def draft
 
   end
 
   def update_history
-    @post_histories = PostHistory.all
+    @post = Post.find(params[:post_id])
+    @post_histories = @post.post_histories.order(created_at: :DESC)
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:body, :is_active)
+    params.require(:post).permit(:body, :is_draft)
   end
 end

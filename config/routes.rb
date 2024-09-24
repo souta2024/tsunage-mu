@@ -2,27 +2,23 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
 
   scope module: :public do
-    resources :users, only: [:edit] do
-      resource :relationships, only: [:create, :destroy]
-      get 'followings', to: 'relationships#followings'
-      get 'followers', to: 'relationships#followers'
-    end
-    get 'users/index', to: 'users#index', as: 'users'
-    get 'users/infomation/:id', to: 'users#show', as: 'user'
-    patch 'users/infomation/:id', to: 'users#update', as: 'user_patch'
-    put 'users/infomation/:id', to: 'users#update', as: 'user_put'
-    delete 'users/infomation/:id', to: 'users#destroy', as: 'user_delete'
-
+    resources :users, only: [:index]
+    get 'posts/timeline'
     get 'posts/draft'
-    get 'posts/update_history'
-    resources :posts, except: [:new]
+    resources :posts, except: [:new] do
+      post 'favorite', to: 'post_favorites#create'
+      delete 'favorite', to: 'post_favorites#destroy'
+      get 'update_history'
+    end
 
     get 'search', to: 'searches#search'
 
-    resources :comments, only: [:show, :create, :edit, :update, :destroy]
-    get 'comments/:id/update_history', to: 'comments#update_history'
+    resources :comments, only: [:show, :create, :edit, :update, :destroy] do
+      post 'favorite', to: 'comment_favorites#create'
+      delete 'favorite', to: 'comment_favorites#destroy'
+      get 'update_history'
+    end
 
-    resource :post_favorites, :comments_favorites, only: [:create, :destroy]
     resources :direct_messages, only: [:index, :show, :create]
     resources :messages, only: [:create, :destroy]
 
@@ -32,6 +28,17 @@ Rails.application.routes.draw do
     get 'options/unsubscribe'
     get 'options/terms_of_service'
     get 'options/user_guide'
+
+    scope '/:account_id' do
+      get 'edit', to: 'users#edit', as: 'edit_user'
+      get '', to: 'users#show', as: 'user'
+      patch '', to: 'users#update', as: 'user_patch'
+      put '', to: 'users#update', as: 'user_put'
+      delete '', to: 'users#destroy', as: 'user_delete'
+      resource :relationships, only: [:create, :destroy]
+      get 'followings', to: 'relationships#followings'
+      get 'followers', to: 'relationships#followers'
+    end
   end
 
   namespace :admin do

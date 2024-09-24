@@ -1,2 +1,49 @@
-<h1>Public::Comments#show</h1>
-<p>Find me in app/views/public/comments/show.html.erb</p>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～コメント詳細～</h3>
+      <% if @comment != nil %>
+        <div class="post-row">
+          <div class="user-name">
+            <span class="text-title">ユーザー名: </span>
+            <%= link_to user_path(@comment.user.account_id), class: "content-link-black" do %>
+              <span><strong><%= @comment.user.name %></strong></span>
+            <% end %>
+          </div>
+          <div>
+            <span class="text-title">投稿内容:</span><br>
+            <%= content_tag :div, class: "content-link-black post-text" do %>
+              <%= safe_join(@comment.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+            <% end %>
+          </div>
+          <div>
+            <%= render "public/comment_favorites/btn", comment: @comment %>
+          </div>
+          <div class="post-history-content">
+            <% if @comment.comment_histories.present? %>
+              <span class="text-title">最終更新日時:</span>
+              <%= link_to comment_update_history_path(@comment.id), class: "history-link content-link-black" do %>
+                <span class="history-datetime"><strong><%= l @comment.updated_at, format: :long %></strong></span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <% if @comment.user.id == current_user.id %>
+          <div class="edit-delete-container">
+            <%= link_to edit_comment_path(@comment.id), class: "edit-link" do %>
+              <span>編集画面へ </span>
+              <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
+            <%= button_to "削除する", comment_path(@comment.id), { method: :delete, "form_class": "delete-btn-form" } %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="row">
+          <div class="col">
+            <p>存在しない投稿です</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

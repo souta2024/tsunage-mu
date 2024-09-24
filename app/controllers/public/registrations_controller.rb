@@ -2,9 +2,20 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  before_action :check_account_id, only: [:create]
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :account_id])
+  end
+
+
+
+  def check_account_id
+    if params[:user][:account_id].blank?
+      while params[:user][:account_id].blank? || User.find_by(account_id: params[:user][:account_id]).present? do
+        params[:user][:account_id] = SecureRandom.base36(15)
+      end
+    end
   end
 
   # before_action :configure_account_update_params, only: [:update]

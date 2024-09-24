@@ -1,0 +1,44 @@
+.post-row {
+  border-top: 3px solid #a4d58c;
+  padding: 5px 0;
+}
+.post-text-link {
+  display: inline-block;
+  width: 100%;
+}
+.post-text-link p {
+  margin-bottom: 0;
+}
+.text-heading {
+  color: #efa04c;
+  font-weight: 800;
+}
+.text-label,
+.text-title {
+  color: #d7b48f;
+  font-weight: 800;
+}
+.post-text-link:hover {
+  background-color: #f5f5f5;
+}
+.post-text-area {
+  width: 100%;
+  min-height: 150px;
+  display: block;
+}
+.acction-bottons {
+  margin: 11px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.is-draft-label {
+  margin-bottom: 0;
+}
+.checkbox-content {
+  display: flex;
+  margin-right: 10px
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}

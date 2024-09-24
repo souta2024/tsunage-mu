@@ -18,24 +18,32 @@ header {
   z-index: 10;
 }
 .header-logo {
-  color: #d53df4;
+  color: #1dbb48;
   font-weight: bold;
 }
 .header-item {
   color: #d1d1d1;
   font-size: 1.5rem;
   font-weight: 600;
+  transition: 0.5s ease;
 }
 
 .header-logo:hover {
-  color: #d53df4;
+  color: #1dbb48;
 }
 .header-item:hover {
   color: black;
+  transition: 0.5s ease;
 }
 .header-logo:hover,
 .header-item:hover {
   text-decoration: none;
+}
+
+.nav-posts.active,
+.nav-timeline.active,
+.nav-search.active {
+  color: red;
 }
 
 /* ハンバーガーアイコン */
@@ -234,7 +242,6 @@ header {
   width: 20%;
   min-height: 100%;
   min-width: 123px;
-  z-index: 9;
   transition: all .75s ease;
 }
 #sp-menu ul {
