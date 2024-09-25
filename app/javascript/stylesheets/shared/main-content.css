@@ -33,6 +33,10 @@
   margin-bottom: 0;
 }
 
-.content-link-black {
+.content-link-black,
+.content-link-black-hover-brown {
   color: black;
+}
+.content-link-hover-black:hover {
+  text-decoration-color: #d7b48f;
 }
