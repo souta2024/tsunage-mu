@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
     get 'timeline', to: 'posts#timeline'
     get 'posts/draft'
-    get 'posts/draft/:id/edit', to: 'posts#draft_edit', as: 'edit_post_draft'
+    get 'posts/draft/:id/edit', to: 'posts#edit_draft', as: 'edit_post_draft'
     patch 'posts/draft/:id', to: 'posts#update_draft', as: 'update_post_draft'
     resources :posts, except: [:new] do
       post 'favorite', to: 'post_favorites#create'
