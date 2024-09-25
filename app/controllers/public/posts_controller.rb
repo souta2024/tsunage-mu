@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.where(is_draft: false, is_hidden: false).order(created_at: :desc)
+    @posts = Post.where(is_draft: false, is_hidden: false).order(published_at: :desc)
     @post = Post.new
   end
 
@@ -57,14 +57,15 @@ class Public::PostsController < ApplicationController
 
   def draft
     @posts = Post.where(user_id: current_user.id, is_draft: true, is_hidden: false).order(created_at: :desc)
+    @post = Post.new
   end
 
   def edit_draft
-    @post = Post.find([:id])
+    @post = Post.find(params[:id])
   end
 
   def update_draft
-    @post = Post.find([:id])
+    @post = Post.find(params[:id])
     @post.update(post_params)
     if @post.is_draft == true
       redirect_to posts_draft_path
