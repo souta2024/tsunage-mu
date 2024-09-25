@@ -1,0 +1,17 @@
+<% users.each do |user| %>
+  <div class="post-row user-post-row">
+    <div class="user-name">
+      <span class="text-title">ユーザー名: </span>
+      <%= link_to user_path(user.account_id), class: "content-link-black" do %>
+        <span><strong><%= user.name %></strong></span>
+      <% end %>
+    </div>
+    <div class="user_name">
+      <span class="text-title">アカウントID: </span>
+      <span><%= user.account_id %></span>
+    </div>
+    <div>
+      ふぉろーフォロワー
+    </div>
+  </div>
+<% end %>

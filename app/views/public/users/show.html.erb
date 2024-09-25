@@ -20,11 +20,33 @@
             <% end %>
           <% end %>
         </div>
+        <div>
+          <div>
+            <%= link_to followings_path(@user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
+              <span class="text-title">フォロー中: </span>
+              <span><strong><%= @user.followings.count %></strong></span>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to followers_path(@user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
+              <span class="text-title">フォロワー: </span>
+              <span><strong><%= @user.followers.count %></strong></span>
+            <% end %>
+          </div>
+        </div>
         <% if @user.account_id == current_user.account_id %>
           <div>
             <%= link_to edit_user_path(@user.account_id), class: "edit-link" do %>
               <span>プロフィール編集画面へ </span>
               <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
+          </div>
+        <% else %>
+          <div>
+            <% if current_user.following?(@user) %>
+              <%= button_to "フォロー外す", relationships_path(@user.account_id), method: :delete %>
+            <% else %>
+              <%= button_to "フォローする", relationships_path(@user.account_id), method: :post %>
             <% end %>
           </div>
         <% end %>

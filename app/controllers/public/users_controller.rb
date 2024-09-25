@@ -12,7 +12,8 @@ class Public::UsersController < ApplicationController
     @user_comments = @user.comments.order(created_at: :desc)
     @favorite_posts = PostFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:post)
     @favorite_comments = CommentFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:comment)
-
+    @followings = @user.followings
+    @follower_users = @user.followers
   end
 
   def update
