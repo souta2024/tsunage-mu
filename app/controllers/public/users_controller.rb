@@ -8,10 +8,10 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find_by(account_id: params[:account_id])
-    @user_posts = @user.posts.order(created_at: :desc)
-    @user_comments = @user.comments.order(created_at: :desc)
-    @favorite_posts = PostFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:post)
-    @favorite_comments = CommentFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:comment)
+    @user_posts = @user.posts.where(is_draft: false, is_hidden: false).order(published_at: :desc)
+    @user_comments = @user.comments.where(is_draft: false, is_hidden: false).order(published_at: :desc)
+    @favorite_posts = PostFavorite.where(user_id: @user.id).order(published_at: :desc).map(&:post).select { |post| post.is_draft == false && post.is_hidden == false }
+    @favorite_comments = CommentFavorite.where(user_id: @user.id).order(published_at: :desc).map(&:comment).select { |post| post.is_hidden == false }
     @followings = @user.followings
     @follower_users = @user.followers
   end

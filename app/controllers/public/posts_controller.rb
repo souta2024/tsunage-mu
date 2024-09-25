@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       if @post.is_draft == true
-        redirect_to posts_draft_path
+        redirect_to posts_drafts_path
       else
         redirect_to timeline_path
       end
@@ -46,7 +46,7 @@ class Public::PostsController < ApplicationController
   end
 
   def timeline
-    @posts = Post.where(user_id: current_user.id, is_draft: false, is_hidden: false).order(created_at: :desc)
+    @posts = Post.where(user_id: current_user.id, is_draft: false, is_hidden: false).order(published_at: :desc)
     @post = Post.new
   end
 
@@ -55,9 +55,13 @@ class Public::PostsController < ApplicationController
     @post_histories = @post.post_histories.order(created_at: :desc)
   end
 
-  def draft
+  def drafts
     @posts = Post.where(user_id: current_user.id, is_draft: true, is_hidden: false).order(created_at: :desc)
     @post = Post.new
+  end
+
+  def show_draft
+    @post = Post.find(params[:id])
   end
 
   def edit_draft

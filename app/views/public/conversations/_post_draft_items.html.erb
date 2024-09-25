@@ -2,13 +2,9 @@
   <div class="post-row user-post-row">
     <div>
       <span class="text-title">下書き内容:</span><br>
-      <%= link_to post_path(post_item.id), class: "content-link-black post-text-link" do %>
+      <%= link_to post_draft_path(post_item.id), class: "content-link-black post-text-link" do %>
         <%= safe_join(post_item.body.split("\n").map { |line| h(line) }, tag(:br)) %>
       <% end %>
-    </div>
-    <div>
-      <span class="text-title">作成日時:</span>
-      <span class="history-datetime"><%= l post_item.created_at, format: :long %></span>
     </div>
     <div class="draft-edit-delete-container">
       <%= link_to edit_post_draft_path(post_item.id), class: "edit-link" do %>

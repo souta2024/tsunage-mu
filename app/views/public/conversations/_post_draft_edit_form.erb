@@ -1,9 +1,15 @@
-<%= form_with model: @post do |f| %>
+<%= form_with model: @post, url: post_draft_path, method: :patch do |f| %>
   <div>
     <span class="text-title"><%= f.label :body, "投稿内容:" %></span><br>
     <%= f.text_area :body, { class: "post-text-area" }  %>
   </div>
   <div class="acction-bottons">
+    <div class="checkbox-content is-draft-checkbox-content">
+      <%= f.check_box :is_draft, checked: true %>
+      <%= f.label :is_draft, class: "text-label checkbox-label is-draft-label" do %>
+        <span>下書きにする</span>
+      <% end %>
+    </div>
     <div class="submit-btn post-submit">
       <%= f.submit "編集する", class: "post-submit" %>
     </div>

@@ -20,7 +20,7 @@
   </div>
   <div>
     <span class="text-title">投稿日時:</span>
-    <span class="history-datetime"><%= l post.created_at, format: :long %></span>
+    <span class="history-datetime"><%= l post.published_at, format: :long %></span>
   </div>
   <div class="post-history-content">
     <% if @post.post_histories.present? %>

@@ -1,0 +1,15 @@
+<div class="post-row">
+  <div>
+    <span class="text-title">投稿内容:</span><br>
+    <%= content_tag :div, class: "post-text" do %>
+      <%= safe_join(post.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+    <% end %>
+  </div>
+</div>
+<div class="edit-delete-container">
+  <%= link_to edit_post_draft_path(post.id), class: "edit-link" do %>
+    <span>編集画面へ </span>
+    <i class="fa-solid fa-arrow-right"></i>
+  <% end %>
+  <%= button_to "削除する", post_path(post.id), { method: :delete, "form_class": "delete-btn-form" } %>
+</div>
