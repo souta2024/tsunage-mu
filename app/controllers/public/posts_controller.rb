@@ -55,7 +55,7 @@ class Public::PostsController < ApplicationController
     @post_histories = @post.post_histories.order(created_at: :desc)
   end
 
-  def drafts
+  def draft
     @posts = Post.where(user_id: current_user.id, is_draft: true, is_hidden: false).order(created_at: :desc)
   end
 
