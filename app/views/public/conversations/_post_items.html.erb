@@ -21,7 +21,7 @@
     </div>
     <div>
       <span class="text-title">投稿日時:</span>
-      <span class="history-datetime"><%= time_ago_in_words(post_item.created_at) %>前</span>
+      <span class="history-datetime"><%= time_ago_in_words(post_item.published_at) %>前</span>
     </div>
     <div>
       <% if post_item.post_histories.present? %>
