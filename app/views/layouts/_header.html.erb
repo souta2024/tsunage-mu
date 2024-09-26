@@ -1,9 +1,9 @@
 <header>
   <nav class="header-items">
     <h2><%= link_to "つなゲ～ム", root_path, class: "header-logo" %></h2>
-    <%= link_to "最新投稿", posts_path, class: "header-item" %>
     <%= link_to "ログイン", new_user_session_path, class: "header-item" %>
     <%= link_to "新規登録", new_user_registration_path, class: "header-item" %>
+    <%= link_to "ゲストログイン(閲覧のみ)", users_guest_sign_in_path, class: "header-item", method: :post %>
     <div id="hm-icon">
       <%= link_to "#", class: "menu-trigger" do %>
         <span></span>

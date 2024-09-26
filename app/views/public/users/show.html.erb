@@ -34,7 +34,11 @@
             <% end %>
           </div>
         </div>
-        <% if @user.account_id == current_user.account_id %>
+        <% if @user.guest_user? %>
+          <% unless @user.account_id == current_user.account_id %>
+            <p>ゲストユーザーはフォローできません。</p>
+          <% end %>
+        <% elsif @user.account_id == current_user.account_id %>
           <div>
             <%= link_to edit_user_path(@user.account_id), class: "edit-link" do %>
               <span>プロフィール編集画面へ </span>
