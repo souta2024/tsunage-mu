@@ -1,2 +1,25 @@
-<h1>Public::Searches#search</h1>
-<p>Find me in app/views/public/searches/search.html.erb</p>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-center">
+      <div class="search_form">
+        <h3 class="text-heading">～検索フォーム～</h3>
+        <%= form_with url: search_path, method: :get do |f| %>
+          <%= f.text_field :word %>
+          <%= f.select :range, options_for_select({"ユーザー" => "user", "アカウントID" => "account_id", "投稿" => "post"}) %>
+          <%= f.select :search, options_for_select({"部分一致" => "partial_match", "前方一致" => "forward_match", "後方一致" => "backward_match", "完全一致" => "perfect_match"}) %>
+          <%= f.submit "検索する" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～検索結果一覧～</h3>
+      <% if @range == "user" || @range == "account_id" %>
+        <%= render "public/users/user_index", users: @records %>
+      <% elsif @range == "post" %>
+        <%= render "public/conversations/post_items", post_items: @records %>
+      <% end %>
+    </div>
+  </div>
+</div>
