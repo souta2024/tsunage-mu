@@ -46,7 +46,7 @@ class Public::PostsController < ApplicationController
   end
 
   def timeline
-    @posts = Post.where(user_id: current_user.id, is_draft: false, is_hidden: false).order(published_at: :desc)
+    @posts = Post.where(user_id: [current_user.id] + current_user.followings.pluck(:id), is_draft: false, is_hidden: false).order(published_at: :desc)
     @post = Post.new
   end
 
