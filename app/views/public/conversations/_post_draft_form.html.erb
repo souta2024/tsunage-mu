@@ -1,0 +1,21 @@
+<% unless current_user.guest_user? %>
+  <%= form_with model: post, url: posts_path, method: :post do |f| %>
+    <div>
+      <span class="text-title"><%= f.label :body, "投稿内容:" %></span><br>
+      <%= f.text_area :body, { class: "post-text-area" }  %>
+    </div>
+    <div class="acction-bottons">
+      <div class="checkbox-content is-draft-checkbox-content">
+        <%= f.check_box :is_draft, checked: true %>
+        <%= f.label :is_draft, class: "text-label checkbox-label is-draft-label" do %>
+          <span>下書きにする</span>
+        <% end %>
+      </div>
+      <div class="submit-btn post-submit">
+        <%= f.submit "投稿する", class: "post-submit" %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>ゲストユーザーは投稿が制限されています</p>
+<% end %>

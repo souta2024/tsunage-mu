@@ -1,9 +1,9 @@
 <div class="container main-content-container">
   <div class="row main-content-row">
     <div class="main-content-col main-col-center">
-      <h3 class="text-heading">～コメント詳細～</h3>
-      <% if @comment != nil %>
-        <%= render 'public/conversations/comment_show', comment: @comment %>
+      <h3 class="text-heading">～投稿詳細～</h3>
+      <% if @post != nil %>
+        <%= render "public/conversations/post_draft_show", post: @post %>
       <% else %>
         <div class="row">
           <div class="col">

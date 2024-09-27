@@ -3,8 +3,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:index]
-    get 'posts/timeline'
-    get 'posts/draft'
+
+    get 'timeline', to: 'posts#timeline'
+    get 'posts/drafts'
+    get 'posts/draft/:id/edit', to: 'posts#edit_draft', as: 'edit_post_draft'
+    get 'posts/draft/:id', to: 'posts#show_draft', as: 'post_draft'
+    patch 'posts/draft/:id', to: 'posts#update_draft'
     resources :posts, except: [:new] do
       post 'favorite', to: 'post_favorites#create'
       delete 'favorite', to: 'post_favorites#destroy'
@@ -56,5 +60,10 @@ Rails.application.routes.draw do
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

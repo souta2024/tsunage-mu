@@ -20,11 +20,37 @@
             <% end %>
           <% end %>
         </div>
-        <% if @user.account_id == current_user.account_id %>
+        <div>
+          <div>
+            <%= link_to followings_path(@user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
+              <span class="text-title">フォロー中: </span>
+              <span><strong><%= @user.followings.count %></strong></span>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to followers_path(@user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
+              <span class="text-title">フォロワー: </span>
+              <span><strong><%= @user.followers.count %></strong></span>
+            <% end %>
+          </div>
+        </div>
+        <% if @user.guest_user? %>
+          <% unless @user.account_id == current_user.account_id %>
+            <p>ゲストユーザーはフォローできません。</p>
+          <% end %>
+        <% elsif @user.account_id == current_user.account_id %>
           <div>
             <%= link_to edit_user_path(@user.account_id), class: "edit-link" do %>
               <span>プロフィール編集画面へ </span>
               <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
+          </div>
+        <% else %>
+          <div>
+            <% if current_user.following?(@user) %>
+              <%= button_to "フォロー外す", relationships_path(@user.account_id), method: :delete %>
+            <% else %>
+              <%= button_to "フォローする", relationships_path(@user.account_id), method: :post %>
             <% end %>
           </div>
         <% end %>
@@ -51,13 +77,16 @@
       <!--タブで選択した要素-->
       <div class="tabbox-contents">
         <div class="tabbox box-show">
-          <%= render "public/users/user_posts", user_posts: @user_posts %>
+          <%= render "public/conversations/post_items", post_items: @user_posts %>
         </div>
         <div class="tabbox">
-          <%= render "public/users/user_comments", user_comments: @user_comments %>
+          <%= render "public/conversations/comment_items", comment_items: @user_comments %>
         </div>
         <div class="tabbox">
-          <%= render "public/users/user_favorite_posts", favorite_posts: @favorite_posts %>
+          <%= render "public/conversations/post_items", post_items: @favorite_posts %>
+        </div>
+        <div class="tabbox">
+          <%= render "public/conversations/comment_items", comment_items: @favorite_comments %>
         </div>
       </div>
     </div>

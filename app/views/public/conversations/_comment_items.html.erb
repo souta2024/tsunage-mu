@@ -1,0 +1,35 @@
+<% comment_items.each do |comment_item| %>
+  <div class="post-row user-post-row">
+    <div class="user-name">
+      <span class="text-title">ユーザー名: </span>
+        <%= link_to user_path(comment_item.user.account_id), class: "content-link-black" do %>
+          <span><strong><%= comment_item.user.name %></strong></span>
+        <% end %>
+    </div>
+    <div class="user-name">
+      <span class="text-title">アカウントID: </span>
+      <span><%= comment_item.user.account_id %></span>
+    </div>
+    <div>
+      <span class="text-title">投稿内容:</span><br>
+      <%= link_to comment_path(comment_item.id), class: "content-link-black post-text-link" do %>
+        <%= safe_join(comment_item.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+      <% end %>
+    </div>
+    <div>
+      <%= render "public/favorites/comment_btn", comment: comment_item %>
+    </div>
+    <div>
+      <span class="text-title">投稿日時:</span>
+      <span class="history-datetime"><%= time_ago_in_words(comment_item.created_at) %>前</span>
+    </div>
+    <div>
+      <% if comment_item.comment_histories.present? %>
+        <span class="text-title">最終更新日時:</span>
+        <%= link_to post_update_history_path(comment_item.id), class: "history-link content-link-black" do %>
+          <span class="history-datetime"><strong><%= l comment_item.updated_at, format: :long %></strong></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

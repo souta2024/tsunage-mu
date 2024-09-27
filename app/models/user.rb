@@ -24,4 +24,58 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
+  def follow(user)
+    active_relationships.create(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
+
+  def self.search_for_name(word, search)
+    if search == "partial_match"
+      User.where("name LIKE?", "%#{word}%")
+    elsif search == "forward_match"
+      User.where("name LIKE?", "#{word}%")
+    elsif search == "backward_match"
+      User.where("name LIKE?", "%#{word}")
+    elsif search == "perfect_match"
+      User.where("name LIKE?", "#{word}")
+    else
+      User.all
+    end
+  end
+
+  def self.search_for_account_id(word, search)
+    if search == "partial_match"
+      User.where("account_id LIKE?", "%#{word}%")
+    elsif search == "forward_match"
+      User.where("account_id LIKE?", "#{word}%")
+    elsif search == "backward_match"
+      User.where("account_id LIKE?", "%#{word}")
+    elsif search == "perfect_match"
+      User.where("account_id LIKE?", "#{word}")
+    else
+      User.all
+    end
+  end
+
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+      user.account_id = SecureRandom.base36(15)
+    end
+  end
+
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
 end
