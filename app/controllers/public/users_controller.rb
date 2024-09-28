@@ -10,10 +10,15 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find_by(account_id: params[:account_id])
-    @user_posts = @user.posts.where(is_draft: false, is_hidden: false).order(published_at: :desc)
-    @user_comments = @user.comments.where(is_hidden: false).order(created_at: :desc)
+    @user_posts = @user.posts.where(is_draft: false, is_hidden: false).order(published_at: :desc).page(params[:page]).per(1)
+    @user_comments = @user.comments.where(is_hidden: false).order(created_at: :desc).page(params[:page]).per(1)
+
     @favorite_posts = PostFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:post).select { |post| post.is_hidden == false }
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(1)
+
     @favorite_comments = CommentFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:comment).select { |comment| comment.is_hidden == false }
+    @favorite_comments = Kaminari.paginate_array(@favorite_comments).page(params[:page]).per(1)
+
     @followings = @user.followings
     @follower_users = @user.followers
   end
