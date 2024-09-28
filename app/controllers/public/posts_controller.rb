@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @posts = Post.where(is_draft: false, is_hidden: false).order(published_at: :desc)
     @post = Post.new
