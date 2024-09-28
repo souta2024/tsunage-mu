@@ -6,10 +6,13 @@
     </div>
     <div class="main-content-col main-col-center">
       <h3 class="text-heading">～タイムライン一覧～</h3>
-      <%= render "public/conversations/post_items", post_items: @posts %>
+      <% unless current_user.guest_user? %>
+        <%= render "public/conversations/post_items", post_items: @posts %>
+      <% else %>
+        <p>ゲストユーザーはタイムライン機能が制限されています。</p>
+      <% end %>
     </div>
-    <div class="main-content-col main-col-side">
-      <h3 class="text-heading">～投稿詳細～</h3>
+    <div class="main-content-col main-col-side main-col-side-transparent">
     </div>
   </div>
 </div>

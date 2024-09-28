@@ -47,10 +47,12 @@
           </div>
         <% else %>
           <div>
-            <% if current_user.following?(@user) %>
-              <%= button_to "フォロー外す", relationships_path(@user.account_id), method: :delete %>
-            <% else %>
-              <%= button_to "フォローする", relationships_path(@user.account_id), method: :post %>
+            <% unless current_user.guest_user? %>
+              <% if current_user.following?(@user) %>
+                <%= button_to "フォロー外す", relationships_path(@user.account_id), method: :delete %>
+              <% else %>
+                <%= button_to "フォローする", relationships_path(@user.account_id), method: :post %>
+              <% end %>
             <% end %>
           </div>
         <% end %>
@@ -91,10 +93,7 @@
       </div>
     </div>
     <!--メイン右側-->
-    <div class="main-content-col main-col-side">
-      <h3 class="main-h3">投稿詳細</h3>
-      <p>部分テンプレート</p>
-      <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
+    <div class="main-content-col main-col-side main-col-side-transparent">
     </div>
   </div>
 </div>

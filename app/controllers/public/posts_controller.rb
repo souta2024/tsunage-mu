@@ -1,5 +1,8 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit, :update, :destroy, :show_draft, :edit_draft, :update_draft]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy, :show_draft, :edit_draft, :update_draft]
+
   def index
     @post = Post.new
     # 有効な投稿を全て表示
@@ -11,8 +14,10 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       if @post.is_draft == true
+        flash[:notice] = "下書きの作成に成功しました。"
         redirect_to posts_drafts_path
       else
+        flash[:notice] = "投稿に成功しました。"
         redirect_to timeline_path
       end
     else
@@ -46,18 +51,25 @@ class Public::PostsController < ApplicationController
     post_history.body = @post.body
     post_history.post_id = @post.id
     if @post.update(post_params)
+      flash[:notice] = "編集に成功しました。"
       post_history.edit_datetime = @post.updated_at
       post_history.save
       redirect_to post_path(@post.id)
     else
+      flash.now[:alert] = "編集に失敗しました。"
       render :edit
     end
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:notice] = "削除に成功しました。"
+      redirect_to posts_path
+    else
+      flash.now[:alert] = "削除に失敗しました。"
+      render :show
+    end
   end
 
   def timeline
@@ -91,12 +103,14 @@ class Public::PostsController < ApplicationController
   def update_draft
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      flash[:notice] = "編集に成功しました。"
       if @post.is_draft == true
-        redirect_to posts_draft_path
+        redirect_to posts_drafts_path
       else
         redirect_to timeline_path
       end
     else
+      flash.now[:alert] = "編集に失敗しました。"
       render :edit_draft
     end
   end
@@ -110,4 +124,23 @@ class Public::PostsController < ApplicationController
   def render_path_params
     params.require(:post).permit(:render_path)
   end
+
+  def ensure_guest_user
+    post = Post.find(params[:id])
+    user = User.find_by(account_id: post.user.account_id)
+    if user.guest_user?
+      flash[:alert] = "このページには遷移できません"
+      redirect_to request.referer
+    end
+  end
+
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    user = User.find_by(account_id: post.user.account_id)
+    unless user.id == current_user.id
+      flash[:alert] = "このページには遷移できません"
+      redirect_to request.referer
+    end
+  end
+
 end

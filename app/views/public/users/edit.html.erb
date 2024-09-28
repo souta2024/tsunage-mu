@@ -41,6 +41,9 @@
           </div>
         </div>
       <% end %>
+    <div>
+      <%= button_to "アカウントを削除する", user_delete_path(@user.account_id), method: :delete %><br>
+    </div>
     </div>
   </div>
 </div>
