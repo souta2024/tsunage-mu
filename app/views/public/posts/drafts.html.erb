@@ -6,10 +6,13 @@
     </div>
     <div class="main-content-col main-col-center">
       <h3 class="text-heading">～下書き一覧～</h3>
-      <%= render "public/conversations/post_draft_items", post_items: @posts %>
+      <% unless current_user.guest_user? %>
+        <%= render "public/conversations/post_draft_items", post_items: @posts %>
+      <% else %>
+        <p>ゲストユーザーは下書き機能が制限されています</p>
+      <% end %>
     </div>
-    <div class="main-content-col main-col-side">
-      <h3 class="text-heading">～下書き詳細～</h3>
+    <div class="main-content-col main-col-side main-col-side-transparent">
     </div>
   </div>
 </div>

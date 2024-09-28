@@ -1,8 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:edit]
-  def index
-  end
+  before_action :ensure_guest_user, only: [:edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def edit
     @user = current_user
@@ -26,6 +25,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find_by(account_id: params[:account_id])
     if @user.update(user_params)
+      flash[:notice] = "編集に成功しました"
       redirect_to user_path(@user.account_id)
     else
       flash.now[:alert] = "編集に失敗しました。"
@@ -34,11 +34,15 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-
-  end
-
-  def favorite
-
+    @user = User.find_by(account_id: params[:account_id])
+    if @user.update(is_active: false)
+      sign_out(current_user)
+      flash[:notice] = "退会に成功しました"
+      redirect_to root_path
+    else
+      flash.now[:alert] = "退会に失敗しました。"
+      render :edit
+    end
   end
 
   private
@@ -48,9 +52,19 @@ class Public::UsersController < ApplicationController
   end
 
   def ensure_guest_user
-    @user = User.find_by(account_id: params[:account_id])
-    if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    user = User.find_by(account_id: params[:account_id])
+    if user.guest_user?
+      flash[:alert] = "このページには遷移できません"
+      redirect_to request.referer
     end
   end
+
+  def is_matching_login_user
+    user = User.find_by(account_id: params[:account_id])
+    unless user.id == current_user.id
+      flash[:alert] = "このページには遷移できません"
+      redirect_to request.referer
+    end
+  end
+
 end
