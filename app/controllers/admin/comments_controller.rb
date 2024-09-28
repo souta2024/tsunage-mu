@@ -2,11 +2,7 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-<<<<<<< Updated upstream
-    @comments = Comment.all.order(published_at: :desc)
-=======
     @comments = Comment.all.order(created_at: :desc).page(params[:page]).per(1)
->>>>>>> Stashed changes
   end
 
   def show
