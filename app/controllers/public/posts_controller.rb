@@ -3,7 +3,7 @@ class Public::PostsController < ApplicationController
   def index
     @post = Post.new
     # 有効な投稿を全て表示
-    @posts = Post.joins(:user).where(users: { is_active: true }, is_draft: false, is_hidden: false).order(published_at: :desc).page(params[:page]).per(1)
+    @posts = Post.joins(:user).where(users: { is_active: true }, is_draft: false, is_hidden: false).order(published_at: :desc).page(params[:page])
   end
 
   def create
@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
-    @comments = @post.comments.joins(:user).where(users: { is_active: true }, is_hidden: false).order(created_at: :desc).page(params[:page]).per(1)
+    @comments = @post.comments.joins(:user).where(users: { is_active: true }, is_hidden: false).order(created_at: :desc).page(params[:page])
     @comment = Comment.new
   end
 
@@ -67,16 +67,16 @@ class Public::PostsController < ApplicationController
     followed_users_posts = Post.joins(user: :followers).where(users: { is_active: true }, relationships: { follower_id: current_user.id }).where(is_draft: false, is_hidden: false)
     @posts = current_user_posts + followed_users_posts
     @posts = (current_user_posts + followed_users_posts).sort_by {|post| post.published_at}.reverse
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(1)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
   def update_history
     @post = Post.find(params[:post_id])
-    @post_histories = @post.post_histories.order(created_at: :desc).page(params[:page]).per(1)
+    @post_histories = @post.post_histories.order(created_at: :desc).page(params[:page])
   end
 
   def drafts
-    @posts = Post.where(user_id: current_user.id, is_draft: true, is_hidden: false).order(created_at: :desc)
+    @posts = Post.where(user_id: current_user.id, is_draft: true, is_hidden: false).order(created_at: :desc).page(params[:page])
     @post = Post.new
   end
 

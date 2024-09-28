@@ -1,4 +1,11 @@
 ja:
+  views:
+    pagination:
+      first: "最初へ"
+      previous: "前へ"
+      truncate: "……"
+      next: "次へ"
+      last: "最後へ"
   activerecord:
     attributes:
       user:

@@ -2,12 +2,12 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.joins(:user).where(users: { is_active: true }, is_draft: false, is_hidden: false).order(published_at: :desc).page(params[:page]).per(1)
+    @posts = Post.joins(:user).where(users: { is_active: true }, is_draft: false, is_hidden: false).order(published_at: :desc).page(params[:page])
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(1)
+    @comments = @post.comments.order(created_at: :desc).page(params[:page])
   end
 
   def update
