@@ -1,2 +1,24 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-side main-col-side-transparent">
+    </div>
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～投稿詳細～</h3>
+      <% if @post != nil %>
+        <%= render "admin/conversations/post_show", post: @post %>
+      <% else %>
+        <div class="row">
+          <div class="col">
+            <p>存在しない投稿です。</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% if @post != nil %>
+      <div class="main-content-col main-col-side">
+        <h3 class="text-heading">～コメント一覧～</h3>
+        <%= render "admin/conversations/comment_items", comment_items: @comments %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -25,6 +25,14 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  def status
+    if is_active
+      "有効"
+    else
+      "停止"
+    end
+  end
+
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
