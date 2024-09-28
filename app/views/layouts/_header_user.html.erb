@@ -4,7 +4,7 @@
     <%= link_to "タイムライン", timeline_path, class: "header-item nav-timeline" %>
     <%= link_to "最新投稿", posts_path, class: "header-item nav-posts" %>
     <%= link_to "検索", search_path, class: "header-item nav-search" %>
-    <span>ユーザー情報</span>
+    <span>ユーザー名:<%= current_user.name %></span>
     <div id="hm-icon">
       <%= link_to "#", class: "menu-trigger" do %>
         <span></span>

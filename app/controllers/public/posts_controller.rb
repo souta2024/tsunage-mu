@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @posts = Post.where(is_draft: false, is_hidden: false).order(published_at: :desc)
     @post = Post.new
@@ -39,14 +40,17 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     post_history = PostHistory.new
-    post_history.body = post.body
-    post_history.post_id = post.id
-    post.update(post_params)
-    post_history.edit_datetime = post.updated_at
-    post_history.save
-    redirect_to post_path(post.id)
+    post_history.body = @post.body
+    post_history.post_id = @post.id
+    if @post.update(post_params)
+      post_history.edit_datetime = @post.updated_at
+      post_history.save
+      redirect_to post_path(post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -56,7 +60,7 @@ class Public::PostsController < ApplicationController
   end
 
   def timeline
-    @posts = Post.where(user_id: current_user.id, is_draft: false, is_hidden: false).order(published_at: :desc)
+    @posts = Post.where(user_id: [current_user.id] + current_user.followings.pluck(:id), is_draft: false, is_hidden: false).order(published_at: :desc)
     @post = Post.new
   end
 
@@ -80,11 +84,14 @@ class Public::PostsController < ApplicationController
 
   def update_draft
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    if @post.is_draft == true
-      redirect_to posts_draft_path
+    if @post.update(post_params)
+      if @post.is_draft == true
+        redirect_to posts_draft_path
+      else
+        redirect_to timeline_path
+      end
     else
-      redirect_to timeline_path
+      render :edit_draft
     end
   end
 
@@ -92,5 +99,9 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body, :is_draft)
+  end
+
+  def render_path_params
+    params.require(:post).permit(:render_path)
   end
 end

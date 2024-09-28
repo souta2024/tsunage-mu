@@ -1,34 +1,8 @@
 <header>
   <nav class="header-items">
     <h2><%= link_to "つなゲ～ム", root_path, class: "header-logo" %></h2>
-    <%= link_to "最新投稿", posts_path, class: "header-item" %>
     <%= link_to "ログイン", new_user_session_path, class: "header-item" %>
     <%= link_to "新規登録", new_user_registration_path, class: "header-item" %>
-    <div id="hm-icon">
-      <%= link_to "#", class: "menu-trigger" do %>
-        <span></span>
-        <span></span>
-        <span></span>
-      <% end %>
-    </div>
-  </nav>
-  <nav id="sp-menu">
-    <ul>
-      <%= link_to "#" do %>
-        <li>MENU1</li>
-      <% end %>
-      <%= link_to "#" do %>
-        <li>MENU2</li>
-      <% end %>
-      <%= link_to "#" do %>
-        <li>MENU3</li>
-      <% end %>
-      <%= link_to "#" do %>
-        <li>MENU4</li>
-      <% end %>
-      <%= link_to posts_path do %>
-        <li>最新投稿</li>
-      <% end %>
-    </ul>
+    <%= link_to "ゲストログイン(閲覧のみ)", users_guest_sign_in_path, class: "header-item", method: :post %>
   </nav>
 </header>

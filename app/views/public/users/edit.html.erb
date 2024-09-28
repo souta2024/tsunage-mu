@@ -1,13 +1,45 @@
-<div class="container">
-  <div class="row">
-    <div class="col-4 offset-4">
-      <%= form_with model: @user do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.label :account_id %>
-        <%= f.label :introduction %>
-        <%= f.text_area :introduction %>
-        <%= f.submit %>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～投稿編集フォーム～</h3>
+      <%= form_with model: @user, url: user_patch_path(current_user.account_id), method: :patch do |f| %>
+        <div>
+          <span class="text-title"><%= f.label :name, "ユーザー名 (必須):" %></span>
+          <% if @user.errors[:name].any? %>
+            <div class="error-container">
+              <p class="error-message">・<%= @user.errors.full_messages_for(:name).first %></p>
+            </div>
+          <% end %>
+          <%= f.text_area :name, { class: "user-name-form", maxlength: 50, required: true } %>
+          <p class="form_info">・50文字以下で入力してください</p>
+        </div><br>
+        <div>
+          <span class="text-title"><%= f.label :account_id, "アカウントID (必須):" %></span>
+          <% if @user.errors[:account_id].any? %>
+            <div class="error-container">
+              <p class="error-message">・<%= @user.errors.full_messages_for(:account_id).first %></p>
+            </div>
+          <% end %>
+          <%= f.text_field :account_id, { class: "user-account_id-form", required: true, maxlength: 5, maxlength: 15 }  %>
+          <p class="form_info">・5文字以上15文字以下で入力してください</p>
+          <p class="form_info">・小文字の半角英字、半角数字、_のみを使用してください</p>
+          <p class="form_info">・他ユーザーと同じアカウントIDは使用できません。</p>
+        </div><br>
+        <div>
+          <span class="text-title"><%= f.label :introduction, "紹介文:" %></span>
+          <% if @user.errors[:introduction].any? %>
+            <div class="error-container">
+              <p class="error-message">・<%= @user.errors.full_messages_for(:introduction).first %></p>
+            </div>
+          <% end %>
+          <%= f.text_area :introduction, { class: "post-text-area", maxlength: 200 }  %>
+          <p class="form_info">・200文字以下で入力してください</p>
+        </div>
+        <div class="acction-bottons">
+          <div class="submit-btn post-submit">
+            <%= f.submit "編集する", class: "post-submit" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
