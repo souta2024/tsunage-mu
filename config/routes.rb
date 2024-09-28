@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'homes/top'
+  end
   namespace :admin do
     get 'relationships/followings'
     get 'relationships/followers'
@@ -6,8 +9,6 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
 
   scope module: :public do
-    resources :users, only: [:index]
-
     get 'timeline', to: 'posts#timeline'
     get 'posts/drafts'
     get 'posts/draft/:id/edit', to: 'posts#edit_draft', as: 'edit_post_draft'
@@ -28,14 +29,6 @@ Rails.application.routes.draw do
     end
 
     resources :direct_messages, only: [:index, :show, :create]
-    resources :messages, only: [:create, :destroy]
-
-    get 'options', to: 'options#option'
-    get 'options/user_information/edit', to: 'options#user_info_edit'
-    patch 'options/user_info_update'
-    get 'options/unsubscribe'
-    get 'options/terms_of_service'
-    get 'options/user_guide'
 
     scope '/:account_id' do
       get 'edit', to: 'users#edit', as: 'edit_user'
@@ -50,7 +43,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'homes/top'
     resources :posts, only: [:index, :show, :update] do
       get 'update_history'
     end
