@@ -40,9 +40,9 @@ Rails.application.routes.draw do
     scope '/:account_id' do
       get 'edit', to: 'users#edit', as: 'edit_user'
       get '', to: 'users#show', as: 'user'
-      patch '', to: 'users#update', as: 'user_patch'
-      put '', to: 'users#update', as: 'user_put'
-      delete '', to: 'users#destroy', as: 'user_delete'
+      patch '', to: 'users#update', as: 'user_patch', param: :account_id
+      put '', to: 'users#update', as: 'user_put', param: :account_id
+      delete '', to: 'users#destroy', as: 'user_delete', param: :account_id
       resource :relationships, only: [:create, :destroy]
       get 'followings', to: 'relationships#followings'
       get 'followers', to: 'relationships#followers'
