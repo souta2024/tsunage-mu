@@ -2,24 +2,7 @@
   <div class="row main-content-row">
     <div class="main-content-col main-col-side">
       <h3 class="text-heading">～コメントフォーム～</h3>
-      <%= form_with model: @comment do |f| %>
-        <div>
-          <span class="text-title"><%= f.label :body, "投稿内容:" %></span><br>
-          <%= f.text_area :body, { class: "post-text-area" }  %>
-        </div>
-        <div class="acction-bottons">
-          <div class="checkbox-content is-draft-checkbox-content">
-            <%= f.check_box :is_draft, checked: false %>
-            <%= f.label :is_draft, class: "text-label checkbox-label is-draft-label" do %>
-              <span>下書きにする</span>
-            <% end %>
-          </div>
-          <%= f.hidden_field :post_id, value: @post.id %>
-          <div class="submit-btn post-submit">
-            <%= f.submit "投稿する", class: "post-submit" %>
-          </div>
-        </div>
-      <% end %>
+      <%= render "public/conversations/comment_form", comment: @comment, post: @post %>
     </div>
     <div class="main-content-col main-col-center">
       <h3 class="text-heading">～投稿詳細～</h3>
