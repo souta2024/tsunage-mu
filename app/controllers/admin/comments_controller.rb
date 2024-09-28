@@ -2,7 +2,7 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @comments = Comment.all.order(published_at: :desc)
+    @comments = Comment.all.order(created_at: :desc)
   end
 
   def show
