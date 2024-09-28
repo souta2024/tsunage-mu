@@ -10,8 +10,13 @@ class Admin::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to admin_post_path(@post.id)
+    if @post.update(post_params)
+      flash[:notice] = "編集に成功しました。"
+      redirect_to admin_post_path(@post.id)
+    else
+      flash.now[:alert] = "編集に失敗しました。"
+      render :show
+    end
   end
 
   def update_history

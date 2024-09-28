@@ -1,8 +1,13 @@
 <% unless current_user.guest_user? %>
   <%= form_with model: post, url: posts_path, method: :post do |f| %>
     <div>
-      <span class="text-title"><%= f.label :body, "投稿内容:" %></span><br>
-      <%= f.text_area :body, { class: "post-text-area" }  %>
+      <span class="text-title"><%= f.label :body, "投稿内容:" %></span>
+      <% if post.errors[:body].any? %>
+        <div class="error-container">
+          <p class="error-message">・<%= post.errors.full_messages_for(:body).first %></p>
+        </div>
+      <% end %>
+      <%= f.text_area :body, { class: "post-text-area", required: true, maxlength: 1000 }  %>
     </div>
     <div class="acction-bottons">
       <div class="checkbox-content is-draft-checkbox-content">
@@ -11,6 +16,8 @@
           <span>下書きにする</span>
         <% end %>
       </div>
+      <% current_path = request.path %>
+      <%= f.hidden_field :render_path, value: current_path %>
       <div class="submit-btn post-submit">
         <%= f.submit "投稿する", class: "post-submit" %>
       </div>

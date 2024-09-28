@@ -19,8 +19,13 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find_by(account_id: params[:account_id])
-    @user.update(user_params)
-    redirect_to admin_user_path(@user.account_id)
+    if @user.update(user_params)
+      flash[:notice] = "編集に成功しました。"
+      redirect_to admin_user_path(@user.account_id)
+    else
+      flash.now[:alert] = "編集に失敗しました。"
+      render :show
+    end
   end
 
   private

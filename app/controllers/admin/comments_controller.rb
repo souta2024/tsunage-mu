@@ -9,8 +9,13 @@ class Admin::CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update(comment_params)
-    redirect_to request.referer
+    if @comment.update(comment_params)
+      flash[:notice] = "編集に成功しました。"
+      redirect_to request.referer
+    else
+      flash.now[:alert] = "編集に失敗しました。"
+      render :show
+    end
   end
 
   private

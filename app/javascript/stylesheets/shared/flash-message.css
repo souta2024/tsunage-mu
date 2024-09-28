@@ -1,0 +1,14 @@
+.flash-message {
+  padding: 16px 60px;
+}
+.flash-message-notice {
+background-color: #d4edda;
+color: #155724;
+border-top: solid 1px #155724;
+border-bottom: solid 1px #155724;
+}
+.flash-message-alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}

@@ -13,12 +13,16 @@ import "popper.js";
 import "bootstrap";
 // cssファイルの適用
 import "../stylesheets/application.scss";
+import "../stylesheets/shared/flash-message.css";
 import "../stylesheets/shared/main-content.css";
+import "../stylesheets/shared/form.css";
+import "../stylesheets/shared/error-message.css";
 import "../stylesheets/views/header.css";
 import "../stylesheets/views/post.css";
 import "../stylesheets/views/post_show.css";
 import "../stylesheets/views/favorite.css";
 import "../stylesheets/views/user.css";
+import "../stylesheets/views/user_edit.css";
 import "../stylesheets/views/draft.css";
 import "../stylesheets/views/admin_header.css";
 import "../stylesheets/views/admin_user.css";
