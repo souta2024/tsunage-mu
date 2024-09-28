@@ -11,8 +11,8 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find_by(account_id: params[:account_id])
     @user_posts = @user.posts.where(is_draft: false, is_hidden: false).order(published_at: :desc)
-    @user_comments = @user.comments.joins(:post).where(is_draft: false, is_hidden: false).order("posts.published_at desc")
-    @favorite_posts = PostFavorite.joins(:post).where(user_id: @user.id).order("posts.published_at desc").map(&:post).select { |post| post.is_hidden == false }
+    @user_comments = @user.comments.where(is_hidden: false).order(created_at: :desc)
+    @favorite_posts = PostFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:post).select { |post| post.is_hidden == false }
     @favorite_comments = CommentFavorite.where(user_id: @user.id).order(created_at: :desc).map(&:comment).select { |comment| comment.is_hidden == false }
     @followings = @user.followings
     @follower_users = @user.followers
