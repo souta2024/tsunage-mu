@@ -13,19 +13,13 @@
       <% end %>
     </div>
   </nav>
-  <nav id="sp-menu">
+  <nav class="user-sp-menu" id="sp-menu">
     <ul>
       <%= link_to user_path(current_user.account_id) do %>
         <li>マイページ</li>
       <% end %>
       <%= link_to posts_drafts_path do %>
         <li>下書き</li>
-      <% end %>
-      <%= link_to direct_messages_path do %>
-        <li>ダイレクトメッセージ</li>
-      <% end %>
-      <%= link_to options_path do %>
-        <li>オプション</li>
       <% end %>
       <%= link_to destroy_user_session_path, method: :delete do %>
         <li>ログアウト</li>
