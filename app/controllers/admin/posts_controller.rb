@@ -1,4 +1,6 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @posts = Post.where(is_draft: false).order(publicshed_at: :desc)
   end
