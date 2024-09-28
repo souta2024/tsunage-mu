@@ -2,7 +2,11 @@
   <div class="row main-content-row">
     <div class="main-content-col main-col-side">
       <h3 class="text-heading">～コメントフォーム～</h3>
-      <%= render "public/conversations/comment_form", comment: @comment, post: @post %>
+        <% unless current_user.guest_user? %>
+          <%= render "public/conversations/comment_form", comment: @comment, post: @post %>
+        <% else %>
+          <p>ゲストユーザーはタイムライン機能が制限されています。</p>
+        <% end %>
     </div>
     <div class="main-content-col main-col-center">
       <h3 class="text-heading">～投稿詳細～</h3>
