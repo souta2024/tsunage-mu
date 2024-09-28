@@ -1,0 +1,54 @@
+<div class="post-row">
+  <div class="user-name">
+    <span class="text-title">ユーザー名: </span>
+    <%= link_to admin_user_path(post.user.account_id), class: "content-link-black" do %>
+      <span><strong><%= post.user.name %></strong></span>
+    <% end %>
+  </div>
+  <div class="user-name">
+    <span class="text-title">アカウントID: </span>
+    <span><%= post.user.account_id %></span>
+  </div>
+  <div>
+    <span class="text-title">投稿内容:</span><br>
+    <%= content_tag :div, class: "post-text" do %>
+      <%= safe_join(post.body.split("\n").map { |line| h(line) }, tag(:br)) %>
+    <% end %>
+  </div>
+  <div>
+    <%= render "admin/favorites/post", post: post %>
+  </div>
+  <div>
+    <span class="text-title">投稿日時:</span>
+    <span class="history-datetime"><%= l post.published_at, format: :long %></span>
+  </div>
+  <div class="post-history-content">
+    <% if post.post_histories.present? %>
+      <span class="text-title">最終更新日時:</span>
+      <%= link_to admin_post_update_history_path(post.id), class: "history-link content-link-black" do %>
+        <span class="history-datetime"><strong><%= l post.updated_at, format: :long %></strong></span>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <span class="text-title">ステータス: </span>
+    <% if post.is_hidden %>
+      <span class="user-inactive"><strong><%= post.status %></strong></span>
+    <% else %>
+      <span class="user-active"><strong><%= post.status %></strong></span>
+    <% end %>
+  </div>
+  <%= form_with model: post, url: admin_post_path(post.id), data: {confirm: "スタータスを変更しますか？"}, method: :patch do |f| %>
+    <div class="acction-bottons">
+      <div class="checkbox-content is-draft-checkbox-content">
+        <%= f.check_box :is_hidden %>
+        <%= f.label :is_hidden, class: "checkbox-label is-draft-label" do %>
+          <span><strong>非公開にする</strong></span>
+        <% end %>
+      </div>
+      <div class="submit-btn post-submit">
+        <%= f.submit "編集する", class: "post-submit" %>
+      </div>
+    </div>
+  <% end %>
+</div>

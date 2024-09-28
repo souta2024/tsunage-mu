@@ -9,6 +9,13 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
+  def status
+    if is_hidden
+      "非公開"
+    else
+      "公開"
+    end
+  end
 
   def favorited_by?(user)
     post_favorites.exists?(user_id: user.id)

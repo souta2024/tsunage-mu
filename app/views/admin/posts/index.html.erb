@@ -1,2 +1,8 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～投稿一覧～</h3>
+      <%= render "admin/conversations/post_items", post_items: @posts %>
+    </div>
+  </div>
+</div>
