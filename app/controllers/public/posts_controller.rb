@@ -14,13 +14,23 @@ class Public::PostsController < ApplicationController
         redirect_to timeline_path
       end
     else
-      redirect_to root_path
+      flash.now[:alert] = "投稿に失敗しました。"
+      if render_path_params["render_path"] == "/posts/drafts"
+        @posts = Post.where(user_id: current_user.id, is_draft: true, is_hidden: false).order(created_at: :desc)
+        render :drafts
+      elsif render_path_params["render_path"] == "/timeline"
+        @posts = @posts = Post.where(user_id: [current_user.id] + current_user.followings.pluck(:id), is_draft: false, is_hidden: false).order(published_at: :desc)
+        render :timeline
+      else
+        @posts = Post.where(is_draft: false, is_hidden: false).order(published_at: :desc)
+        render :index
+      end
     end
   end
 
   def show
     @post = Post.find_by(id: params[:id])
-    @comments = @post.comments
+    @comments = @post.comments.order(created_at: :desc)
     @comment = Comment.new
   end
 
