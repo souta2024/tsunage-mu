@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.where.not(name: "guestuser")
+    @users = User.where.not(name: "guestuser").order(created_at: :desc).page(params[:page]).per(1)
   end
 
   def show

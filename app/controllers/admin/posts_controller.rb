@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.where(is_draft: false).order(published_at: :desc)
+    @posts = Post.where(is_draft: false).order(published_at: :desc).page(params[:page]).per(1)
   end
 
   def show
