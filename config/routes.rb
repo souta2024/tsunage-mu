@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   root to: 'public/homes#top'
 
   scope module: :public do
@@ -47,9 +51,21 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'homes/top'
-    resources :posts, only: [:index, :show, :update]
-    resources :users, only: [:index, :show, :update]
+    resources :posts, only: [:index, :show, :update] do
+      get 'update_history'
+    end
+    resources :users, only: [:index]
     resources :comments, only: [:index, :show, :update]
+    get 'search', to: 'searches#search'
+
+    scope '/:account_id' do
+      get 'edit', to: 'users#edit', as: 'edit_user'
+      get '', to: 'users#show', as: 'user'
+      patch '', to: 'users#update', as: 'user_patch'
+      put '', to: 'users#update', as: 'user_put'
+      get 'followings', to: 'relationships#followings'
+      get 'followers', to: 'relationships#followers'
+    end
   end
 
   devise_for :users,skip: [:passwords], controllers: {

@@ -1,0 +1,44 @@
+<% users.each do |user| %>
+  <div class="post-row user-post-row">
+    <div class="user-name">
+      <%= link_to admin_user_path(user.account_id), class: "content-link-black content-link-hover-black" do %>
+        <span class="text-title">ユーザー名: </span>
+        <span><strong><%= user.name %></strong></span>
+      <% end %>
+    </div>
+    <div class="user_name">
+      <span class="text-title">アカウントID: </span>
+      <span><%= user.account_id %></span>
+    </div>
+    <div>
+      <span class="text-title">紹介文:</span><br>
+      <% if user.introduction.present? %>
+        <%= content_tag :div, class: "content-link-black post-text" do %>
+          <%= safe_join(user.introduction.split("\n").map { |line| h(line) }, tag(:br)) %>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <div>
+        <%= link_to admin_followings_path(user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
+          <span class="text-title">フォロー中: </span>
+          <span><strong><%= user.followings.count %></strong></span>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to admin_followers_path(user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
+          <span class="text-title">フォロワー: </span>
+          <span><strong><%= user.followers.count %></strong></span>
+        <% end %>
+      </div>
+      <div>
+        <span class="text-title">ステータス: </span>
+        <% if user.is_active %>
+          <span class="user-active"><strong><%= user.status %></strong></span>
+        <% else %>
+          <span class="user-inactive"><strong><%= user.status %></strong></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

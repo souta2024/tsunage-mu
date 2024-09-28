@@ -20,6 +20,9 @@ import "../stylesheets/views/post_show.css";
 import "../stylesheets/views/favorite.css";
 import "../stylesheets/views/user.css";
 import "../stylesheets/views/draft.css";
+import "../stylesheets/views/admin_header.css";
+import "../stylesheets/views/admin_user.css";
+import "../stylesheets/views/admin_post.css";
 // jsファイルの適用
 import "../views/script.js";
 import "../views/header.js";

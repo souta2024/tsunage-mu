@@ -1,2 +1,20 @@
-<h1>Admin::Comments#show</h1>
-<p>Find me in app/views/admin/comments/show.html.erb</p>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-side main-col-side-transparent">
+    </div>
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～コメント詳細～</h3>
+      <% if @comment != nil %>
+        <%= render "admin/conversations/comment_show", comment: @comment %>
+      <% else %>
+        <div class="row">
+          <div class="col">
+            <p>存在しない投稿です。</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="main-content-col main-col-side main-col-side-transparent">
+    </div>
+  </div>
+</div>
