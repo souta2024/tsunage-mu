@@ -24,13 +24,13 @@
           <div>
             <%= link_to followings_path(@user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
               <span class="text-title">フォロー中: </span>
-              <span><strong><%= @user.followings.count %></strong></span>
+              <span><strong><%= @user.followings.where(is_active: true).count %></strong></span>
             <% end %>
           </div>
           <div>
             <%= link_to followers_path(@user.account_id), class: "text-title-link content-link-black content-link-hover-black" do %>
               <span class="text-title">フォロワー: </span>
-              <span><strong><%= @user.followers.count %></strong></span>
+              <span><strong><%= @user.followers.where(is_active: true).count %></strong></span>
             <% end %>
           </div>
         </div>
