@@ -1,7 +1,5 @@
 class Public::PostFavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:update, :destroy]
-  before_action :is_matching_login_user, only: [:update, :destroy]
 
   def create
     post = Post.find(params[:post_id])
