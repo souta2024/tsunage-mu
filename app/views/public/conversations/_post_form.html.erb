@@ -11,7 +11,7 @@
     </div>
     <div class="acction-bottons">
       <div class="checkbox-content is-draft-checkbox-content">
-        <%= f.check_box :is_draft, checked: false %>
+        <%= f.check_box :is_draft, checked: false, class: "check-box" %>
         <%= f.label :is_draft, class: "text-label checkbox-label is-draft-label" do %>
           <span>下書きにする</span>
         <% end %>
@@ -19,7 +19,7 @@
       <% current_path = request.path %>
       <%= f.hidden_field :render_path, value: current_path %>
       <div class="submit-btn post-submit">
-        <%= f.submit "投稿する", class: "post-submit" %>
+        <%= f.submit "投稿する", class: "submit-btn" %>
       </div>
     </div>
   <% end %>
