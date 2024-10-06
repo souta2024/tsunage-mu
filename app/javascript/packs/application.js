@@ -35,10 +35,6 @@ import "../views/header.js";
 import "../views/users.js";
 import "../views/posts.js";
 
-// Google Chromeにおけるページロード時のtransition無効化
-import "../stylesheets/shared/body.css";
-import "../views/body.js";
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
