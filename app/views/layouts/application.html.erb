@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="preload">
     <!-- ログイン状況に応じたヘッダーを表示 -->
     <% if user_signed_in? %>
       <%= render "layouts/header_user" %>
