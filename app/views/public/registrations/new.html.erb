@@ -1,39 +1,49 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+<div class="container main-content-container">
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-center">
+      <h3 class="text-heading">～新規登録～</h3>
+      <%= form_with model: @user, url: user_registration_path do |f| %>
+        <div>
+          <span class="text-title"><%= f.label :name, "ユーザー名 (必須):" %></span>
+          <% if @user.errors[:name].any? %>
+            <div class="error-container">
+              <p class="error-message">・<%= @user.errors.full_messages_for(:name).first %></p>
+            </div>
+          <% end %>
+          <%= f.text_area :name, { class: "user-name-form", maxlength: 50, required: true } %>
+          <p class="form_info">・1～50文字</p>
+        </div><br>
+        <div>
+          <span class="text-title"><%= f.label :account_id, "アカウントID :" %></span>
+          <% if @user.errors[:account_id].any? %>
+            <div class="error-container">
+              <p class="error-message">・<%= @user.errors.full_messages_for(:account_id).first %></p>
+            </div>
+          <% end %>
+          <%= f.text_field :account_id, { class: "user-account_id-form", required: true, maxlength: 5, maxlength: 15 }  %>
+          <p class="form_info">・英数字と「_」のみ　5～15文字</p>
+          <p class="form_info">・未入力の場合はランダムな値が設定されます</p>
+        </div><br>
+        <div>
+          <span class="text-title"><%= f.label :email, "メールアドレス (必須):" %></span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text_field" %>
+        </div><br>
+        <div>
+          <span class="text-title"><%= f.label :password, "パスワード (必須):" %></span>
+          <%= f.password_field :password, autocomplete: "new-password", class: "text_field" %>
+          <p class="form_info">・6文字以上で入力してください</p>
+        </div><br>
+        <div>
+          <span class="text-title"><%= f.label :password_confirmation, "パスワード確認 (必須):" %></span>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text_field" %>
+        </div><br>
+        <div class="acction-bottons">
+          <div class="submit-btn post-submit">
+            <%= f.submit "新規登録する", class: "post-submit" %>
+          </div>
+        </div>
+      <% end %>
+      <%= render "public/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :account_id %><span>未入力の場合は自動的にランダムな値が設定されます</span><br />
-    <%= f.text_field :account_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
