@@ -37,6 +37,6 @@
       <span>編集画面へ </span>
       <i class="fa-solid fa-arrow-right"></i>
     <% end %>
-    <%= button_to "削除する", post_path(post.id), data: {confirm: "投稿を削除しますか？"}, method: :delete, "form_class": "delete-btn-form" %>
+    <%= button_to "削除する", post_path(post.id), method: :delete, data: {confirm: "投稿を削除しますか？"}, class: "delete-btn", "form_class": "delete-btn-form" %>
   </div>
 <% end %>
