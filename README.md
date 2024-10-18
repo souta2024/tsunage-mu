@@ -21,8 +21,13 @@
 * ゲームを遊んだ感想を発信する際
 * 開発したゲームの情報を発信する際
 ​
-## 設計書
-後ほど作成予定
+## 設計
+* 実装機能リスト :https://docs.google.com/spreadsheets/d/1Qf1K58uS1kERVMibR1Uf_xuhmAfgo26TNjEVGsBAItw/edit?usp=sharing
+* UI Flows :https://drive.google.com/file/d/1TMcIH2NZ8PrE7hFaTumwpdeymX2dN_jL/view?usp=sharing
+* ER図 :https://drive.google.com/file/d/1qac3fpnM54xzVPTh38xcenksr4eX44ji/view?usp=sharing
+* テーブル定義書 :https://docs.google.com/spreadsheets/d/1N3iFKJVFU-9m5FGC2bJ4RmP96ZmaeyJqPRGpbn_w4Yw/edit?usp=sharing
+* アプリケーション詳細設計書 :https://docs.google.com/spreadsheets/d/1ZDUINZ64TLqjGP4mcMDATkoVfprnMWpy0eqOii9CDoY/edit?usp=sharing
+* WBS :https://docs.google.com/spreadsheets/d/1Ep0E0QRjT4Y2y5b0g4BEo210HI5jRCXrPWAISCayEiM/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -34,4 +39,4 @@
 ## 使用素材
 著作権を考慮し、架空のデータを扱う予定です。  
 なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。  
-使用した素材に関しましては、使用さた際に随時追加予定です。
+使用した素材に関しましては、使用した際に随時追加予定です。
