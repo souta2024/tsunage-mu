@@ -19,7 +19,7 @@ import "../stylesheets/shared/main-content.css";
 import "../stylesheets/shared/form.css";
 import "../stylesheets/shared/error-message.css";
 import "../stylesheets/shared/pagination.css";
-import "../stylesheets/shared/link.css";
+import "../stylesheets/shared/action-bottons.css";
 import "../stylesheets/views/header.css";
 import "../stylesheets/views/post.css";
 import "../stylesheets/views/post_show.css";
