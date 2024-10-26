@@ -1,5 +1,6 @@
 <div class="container main-content-container">
   <div class="row main-content-row">
+    <div class="main-content-col main-col-side main-col-side-transparent"></div>
     <div class="main-content-col main-col-center">
       <h3 class="text-heading">～新規登録～</h3>
       <%= form_with model: @user, url: user_registration_path do |f| %>
@@ -43,7 +44,14 @@
           </div>
         </div>
       <% end %>
+    </div>
+    <div class="main-content-col main-col-side main-col-side-transparent"></div>
+  </div>
+  <div class="row main-content-row">
+    <div class="main-content-col main-col-side main-col-side-transparent"></div>
+    <div class="main-col-center main-col-link">
       <%= render "public/shared/links" %>
     </div>
+    <div class="main-content-col main-col-side main-col-side-transparent"></div>
   </div>
 </div>
